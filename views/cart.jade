@@ -1,0 +1,11 @@
+extends layout
+
+block head
+    title #{user.name} | cart
+
+block content
+    h1 cart 
+
+    p #{cart}
+    hr
+    h4 Total #{cart.total}

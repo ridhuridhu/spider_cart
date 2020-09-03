@@ -1,0 +1,14 @@
+extends layout
+
+block head 
+    title Spider Cart | #{product.title}
+
+block content
+
+    .proCard
+        h1 #{product.title}
+        p #{product.caption}
+        -for(let i=0;i<product.images.length;i++){
+            img(src="#{product.images[i]}",class="proImage" ,alt="", srcset="")
+            hr
+        -}

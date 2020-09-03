@@ -1,0 +1,51 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(href='https://fonts.googleapis.com/css2?family=Open+Sans&display=swap', rel='stylesheet')
+  link(rel="stylesheet", href="../style/layout.css")
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+
+  block head 
+body 
+  nav#navbar.navbar.navbar-expand-lg
+    a.navbar-brand(href='/') Spider Cart 
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      i.fa.fa-bars(aria-hidden='true')
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a.nav-link(href='/') Home 
+        li.nav-item
+          a.nav-link(href='#') Link
+        -if(user){
+          li.nav-item
+            a.nav-link(href='/cart')
+              i(class="fa fa-shopping-cart" aria-hidden="true")
+              |   Cart
+          li.nav-item
+            a.nav-link(href='/auth/logout') Logout 
+        -}
+        -else{
+          li.nav-item
+            a.nav-link(href='/auth/login') Login 
+          li.nav-item
+            a.nav-link(href='/auth/register') Sign Up
+
+        -}
+      form.form-inline.my-2.my-lg-0
+        input.form-control.mr-sm-2(type='search', id="searchBox" , placeholder='Search', aria-label='Search')
+        .showSearch
+        button.btn.btn-success.my-2.my-sm-0(type='submit') Search
+  br    
+  .container
+    block content
+
+  
+
+  script(src="../scripts/layout.js")

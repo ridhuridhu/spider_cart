@@ -1,0 +1,24 @@
+extends layout
+block head 
+    title Spider Cart | Login
+block content
+    if(message.length>0)
+        .container.mt-5
+            .alert.alert-danger.error(role="alert") #{message}
+    .container
+            .card
+                h3.text-center Account Login
+                form(action='/auth/login', method='post')
+                    .form-group
+                    label(for='email') Email
+                    input.form-control(type='email', name='email', required='true', value="test@gmail.com",)
+                    .form-group
+                    label(for='password') Password
+                    input.form-control(type='password', name='password',id="password", required='true', value="test@gmail.com",)
+                    hr
+                    button.btn.btn-primary(type='submit') Log In
+                p
+                    | Don't have an account?
+                    a(href='/auth/register')   Sign up
+
+    script(src="../scripts/error.js")

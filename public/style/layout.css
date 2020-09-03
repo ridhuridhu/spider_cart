@@ -1,0 +1,32 @@
+body {
+	background-color: #f4f4f4;
+	font-family: 'Open Sans', sans-serif;
+}
+.container{
+	background-color: white;
+}
+.card{
+	padding: 0 15px;
+}
+nav{
+	font-size: 18px;
+}
+#navbar a,#span{
+	color: #000;
+  
+}
+.navbar-toggler {
+	color: #000;
+
+}
+#navbar a:hover{
+	color: #f4f4f4;
+   
+}
+#navbar{
+	background-color: #ab000d;
+}
+.navbar-brand img{
+	width: 100%;
+	max-width: 150px;
+}

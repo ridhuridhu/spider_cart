@@ -1,0 +1,18 @@
+extends layout
+
+block head
+    title Spider Cart | Add Product
+block content
+    form(action='#',id="imageUploadForm" ,method='post', enctype='multipart/form-data')
+        input(type='file', id="fileInput", placeholder="Add images of the Product" name='avatar')
+        input(type="submit", value="Add image")
+    br
+
+    form(action="/product/add", id="addProduct" method="post")
+        input(type="text" name="title" id="p_title" value="iphone" )
+        input(type="text" name="cap" id="p_cap" value="steve jobs ")
+        .images
+        input(type="submit", value="Add Product")
+
+    p(id="showLink")
+    script(src="../scripts/proAdd.js")
