@@ -15,8 +15,9 @@ block content
                     .form-group
                     label(for='password') Password
                     input.form-control(type='password', name='password',id="password", required='true', value="test@gmail.com",)
+                    p.alert.alert-danger(id="passValid")
                     hr
-                    button.btn.btn-primary(type='submit') Log In
+                    button.btn.btn-primary.disabled(type='submit', id="submitBtn") Log In
                 p
                     | Don't have an account?
                     a(href='/auth/register')   Sign up

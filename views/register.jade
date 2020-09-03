@@ -28,11 +28,12 @@ block content
                 .form-group
                 label(for='password') Password
                 input.form-control(type='password', name='password',id="password", value="test@gmail.com", required='')
+                p.alert.alert-danger(id="passValid")
                 .form-group
                 label(for='email') Confirm Password
                 input.form-control(type='password', name='rpassword', value="test@gmail.com", required='')
                 hr
-                button.btn.btn-primary(type='submit') Sign Up
+                button.btn.btn-primary.disabled(type='submit',id="submitBtn") Sign Up
         p
             | Have an account? 
             a(href='/auth/login')   Login 
