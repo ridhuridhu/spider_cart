@@ -10,7 +10,7 @@ head
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
-
+  
   block head 
 body 
   nav#navbar.navbar.navbar-expand-lg
@@ -40,12 +40,12 @@ body
         -}
       form.form-inline.my-2.my-lg-0
         input.form-control.mr-sm-2(type='search', id="searchBox" , placeholder='Search', aria-label='Search')
-        .showSearch
+        .showSearch(class="dropdown-menu" aria-labelledby="navbarDropdown")
         button.btn.btn-success.my-2.my-sm-0(type='submit') Search
   br    
   .container
     block content
-
+script(src="../scripts/layout.js")
   
 
-  script(src="../scripts/layout.js")
+  

@@ -1,0 +1,40 @@
+extends layout
+
+block head
+    -if(buyer){
+        title #{user.name} | Home
+    -}
+    -else{
+        title #{user.name} | Shop
+    -}
+    link(rel="stylesheet", href="../style/dashboard.css")
+
+block content 
+    h1.alert-success Welcome #{user.name} 
+    -if(buyer){
+        h1 Buyer 
+    -}
+    -else{  
+        h1  Seller
+        li 
+            a(href="/seller/add") add Product
+        -if(products){
+            .products
+                -for(var i=0;i<products.length;i++){
+                    .showPro
+                        h4.card-title #{products[i].title}
+                        img.showProImg(src='#{products[i].images[0]}', alt='img')
+                        
+                        p.card-body 
+                            h4 Price : 
+                                button.btn.btn-outline-success #{products[i].price}
+                            | #{products[i].caption}
+                        .card-bottom
+                            a.btn.btn-outline-primary(href='/show/#{products[i].id}')  Visit 
+                            
+                -}
+                
+
+        -}
+    -}
+    

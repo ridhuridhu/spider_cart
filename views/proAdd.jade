@@ -4,15 +4,25 @@ block head
     title Spider Cart | Add Product
 block content
     form(action='#',id="imageUploadForm" ,method='post', enctype='multipart/form-data')
-        input(type='file', id="fileInput", placeholder="Add images of the Product" name='avatar')
-        input(type="submit", value="Add image")
+        .form-group
+            label(for="image") choose images and add them 
+            input.form-control(type='file', id="fileInput", placeholder="Add images of the Product" name='avatar')
+        input.btn.btn-success(type="submit", value="Add image")
     br
 
-    form(action="/product/add", id="addProduct" method="post")
-        input(type="text" name="title" id="p_title" value="iphone" )
-        input(type="text" name="cap" id="p_cap" value="steve jobs ")
+    form(action="/seller/add", id="addProduct" method="post")
+        .form-group
+            label(for="title") Title of the Product
+            input.form-control(type="text" name="title" id="p_title" value="iphone" )
+        .form-group
+            label(for="price") Price of the Product
+            input.form-control(type="number" name="price" id="p_price" value="100" )
+        .form-group
+            label(for="caption") Description of the Product
+            textarea.form-control(type="text", rows="3" name="cap" id="p_cap" value="steve jobs ")
         .images
-        input(type="submit", value="Add Product")
+        input.btn.btn-outline-success(type="submit", value="Add Product")
 
     p(id="showLink")
+    link(rel="stylesheet", href="../style/proAdd.css")
     script(src="../scripts/proAdd.js")

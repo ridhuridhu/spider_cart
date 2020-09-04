@@ -48,9 +48,12 @@ require('./config/passport')(passport);
 
 // routes
 
+const buyerRoute=require("./routes/buyer");
+const sellerRoute=require("./routes/seller");
 
 app.use(require('./routes/')); // main routes
 app.use('/auth', require('./routes/auth')); // user routes
-
+app.use("/buyer",buyerRoute);
+app.use("/seller",sellerRoute);
 // run server
 server.listen(port, () => console.info(`Server on Fire @${port}`));

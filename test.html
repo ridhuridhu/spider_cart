@@ -1,58 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <nav id="navbar" class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="/">Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+  <div class="show">
+    <h1 class="card-title"> Title </h1>
+    <div class="showPro">
+      <img id="mainImg" src="./uploads/avatar-1599127062166.jpg" alt="img">
+      <p class="card-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro exercitationem facere hic soluta deleniti,
+        architecto amet iure nesciunt id natus dolore. Quam quas quis mollitia sit aliquam optio fuga minus debitis
+        asperiores itaque illum nesciunt nihil recusandae animi maxime rem odit, neque architecto non quaerat cumque
+        ipsam? Esse, harum voluptatum.
+        <br>
+         Price: <button class="btn btn-outline-primary"> 500 </button>
+         <br>
+         <br>
+        <a class="btn btn-success" href="/cart/add/id"> Add to Cart </a>
+      </p>
+    </div>
+    <hr>
+    <div class="imgList">
+      <img onclick="updateImage(this)" src="./uploads/avatar-1599127062166.jpg" alt="">
+      <img  onclick="updateImage(this)" src="./uploads/avatar-1599127066386.jpg" alt="">
+      <img  onclick="updateImage(this)" src="./uploads/avatar-1599127070889.jpg" alt="">
+    </div>
+  </div>
 
-    <!-- login -->
-    <!-- signUp -->
-    <!-- navbar -->
-    <!-- homepage Flex box  -->
+
+
+
+
+  <!-- login -->
+  <!-- signUp -->
+  <!-- navbar -->
+  <!-- homepage Flex box  -->
 </body>
-</html>
-<style>
-    #navbar a,#span{
-        color: #000;
-      
-    }
-    .navbar-toggler {
-        color: #000;
 
+</html>
+<script>
+  function updateImage(data){
+    let mainImg=document.getElementById("mainImg");
+    mainImg.src=data.src;
+  }
+
+</script>
+<style>
+  body {
+    background-color: #f4f4f4;
+  }
+  .show{
+    margin: 10px auto;
+    padding: 10px;
+
+  }
+  .card-title{
+    text-align: center;
+    
+  }
+  .showPro {
+    display: flex;
+    margin: 5px auto;
+
+  }
+
+  #mainImg {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .imgList{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .imgList img {
+   
+    width: 100%;
+    max-width: 150px;
+    margin: 5px auto;
+    cursor: pointer;
+
+    
+  }
+
+  @media (max-width: 576px) {
+    .showPro {
+      flex-direction: column;
     }
-    #navbar a:hover{
-        color: #f4f4f4;
-       
+  }
+
+  @media (min-width: 577px) {
+    .showPro {
+      flex-direction: row;
     }
-    #navbar{
-        background-color: #ab000d;
-    }
+
+    
+  }
 </style>

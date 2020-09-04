@@ -5,6 +5,10 @@ block content
     if(message.length>0)
         .container.mt-5
             .alert.alert-danger.error(role="alert") #{message}
+    -if(msg.length>0){
+        .container.mt-5
+            .alert.alert-success.error(role="alert") #{msg}
+    -}
     .container
             .card
                 h3.text-center Account Login

@@ -4,7 +4,7 @@ $("#addToCart").click(function (e) {
     console.log(this);
 });
 
-const baseUrl=`${window.location.origin}/`;
+var baseUrl=`${window.location.origin}/`;
 // console.log(baseUrl);
 
 
@@ -15,8 +15,9 @@ $("#searchBox").keyup((e) => {
         k: (query.value)
     };
     $.post(`/search/${query.value}`, (data) => {
-        //console.log(data);
-        $(".showSearch").html(data);
+        if(data.length>1){    
+            $(".dropdown-menu").html(data);
+        }
     });
 
 
@@ -40,7 +41,7 @@ $('#imageUploadForm').on('submit', (function (e) {
             //console.log(data);
             //console.log(data.filename);
             var showLink = $("#showLink");
-            let html = ` <img src="${baseUrl}image/${data.filename}" alt="${data.filename}">`;
+            let html = ` <img class="proAdd" src="${baseUrl}image/${data.filename}" alt="${data.filename}">`;
             imagesLink.push(`${baseUrl}image/${data.filename}`);
             //console.log(imagesLink);
             showLink.append(html);

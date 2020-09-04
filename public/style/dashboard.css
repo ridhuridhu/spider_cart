@@ -1,0 +1,20 @@
+.products {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .showProImg {
+    width: 100%;
+    max-width: 200px;
+    margin: 2px auto;
+    position: relative;
+    background-color: white;
+  }
+  
+  .showPro {
+    padding: 10px;
+    border: 1px solid silver;
+    width: 100%;
+    max-width: 350px;
+    margin: 1px auto;
+  }

@@ -9,7 +9,7 @@ const {
 
 
 router.get('/login', ensureGuest, (req, res) => {
-	res.render("login",{message:req.flash("error")});
+	res.render("login",{message:req.flash("error"),msg:req.flash("success")});
 });
 
 router.post('/login', (req, res, next) => {
@@ -53,6 +53,13 @@ router.post('/register', (req, res) => {
 					errors.push({
 						text: 'Email already exist!'
 					});
+					res.render('register', {
+						errors,
+						name: '',
+						email: '',
+						password: '',
+						rpassword: ''
+					});
 					
 				} 
 		User.findOne({username:req.body.username})
@@ -85,6 +92,7 @@ router.post('/register', (req, res) => {
 									.then(user => {
 	
 										console.log(`User ${user._id} register!`);
+										req.flash("success","you have successfully registered ! Login Now ");
 										res.redirect('login');
 	
 									})
