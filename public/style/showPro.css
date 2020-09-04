@@ -36,12 +36,14 @@
   @media (max-width: 576px) {
     .showPro {
       flex-direction: column;
+      
     }
   }
 
   @media (min-width: 577px) {
     .showPro {
       flex-direction: row;
+      
     }
 
     

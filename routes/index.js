@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const multer = require("multer");
-const {ensureGuest,ensureAuthenticated} = require('../libs/auth');
+const {ensureGuest,ensureAuthenticated,ensureSeller,ensureBuyer} = require('../libs/auth');
 const Product=require("../models/Product");
 
 const path = require('path');

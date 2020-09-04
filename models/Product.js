@@ -10,6 +10,7 @@ let ProductSchema=new Schema({
     images:[{
         type:String
     }],
+    quantity:{type:Number},
     seller:{type:mongoose.Schema.Types.ObjectId,ref:"user"},
 
 });

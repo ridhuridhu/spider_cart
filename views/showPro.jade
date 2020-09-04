@@ -4,18 +4,18 @@ block head
     title Spider Cart | #{product.title}
     link(rel="stylesheet", href="../style/showPro.css")
 block content
-    p #{product}
     .show
         h1.card-title #{product.title}
         .showPro
             img#mainImg(src='#{product.images[0]}', alt='img')
             p.card-body #{product.caption}
-                br
-                |          Price: 
-                button.btn.btn-outline-primary  #{product.price} 
-                br
-                br
-                a.btn.btn-success(href='/cart/add/#{product.id}')  Add to Cart 
+            
+                  
+                button.btn.btn-outline-primary  Price:  #{product.price}  &nbsp;
+                
+                button.btn.btn-outline-danger  Items Left :  #{product.quantity} &nbsp;
+                
+                a.btn.btn-success(href='/cart/add/#{product.id}')  Add to Cart  &nbsp;
         hr
         .imgList
             -for(var i=0;i<product.images.length;i++){

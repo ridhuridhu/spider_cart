@@ -23,18 +23,16 @@ block content
                 -for(var i=0;i<products.length;i++){
                     .showPro
                         h4.card-title #{products[i].title}
-                        img.showProImg(src='#{products[i].images[0]}', alt='img')
-                        
+                        img.showProImg(src='#{products[i].images[0]}',style="margin:0 auto;" ,alt='img',class="img-responsive center-block")
                         p.card-body 
                             h4 Price : 
                                 button.btn.btn-outline-success #{products[i].price}
                             | #{products[i].caption}
                         .card-bottom
-                            a.btn.btn-outline-primary(href='/show/#{products[i].id}')  Visit 
-                            
+                            a.btn.btn-outline-primary(href='/show/#{products[i].id}')  Visit
+                            | &nbsp;
+                            a.btn.btn-outline-primary(href='/seller/edit/#{products[i].id}') Edit      
                 -}
-                
-
         -}
     -}
     

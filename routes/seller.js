@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Product = require('../models/Product');
-
-router.get("/", (req, res) => {
+const {ensureGuest,ensureAuthenticated,ensureSeller,ensureBuyer} = require('../libs/auth');
+router.get("/", ensureSeller,ensureAuthenticated,(req, res) => {
     Product.find({seller:req.user._id},(err,products)=>{
         //console.log(products);
         var user=req.user;
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     
 });
 
-router.get('/add', (req, res) => {
+router.get('/add',ensureSeller,ensureAuthenticated, (req, res) => {
     res.render("proAdd");
 });
 
@@ -29,6 +29,7 @@ router.post("/add", async(req, res) => {
     });
     newPro.seller = req.user._id;
     newPro.price=req.body.price;
+    newPro.quantity=req.body.quantity;
     await newPro.save(err => {
         if (err) throw err;
         let data={
@@ -39,17 +40,46 @@ router.post("/add", async(req, res) => {
     });
 });
 
-router.get("/show/:id", (req, res) => {
+router.get("/edit/:id", ensureSeller,(req, res) => {
     let id = req.params.id;
     //console.log(id);
     Product.findOne({
         id: id
     }, (err, product) => {
         if (err) throw err;
-        res.render("showPro", {
+        res.render("editPro", {
             product: product
         });
     });
 
+});
+router.post("/edit/:id",ensureSeller,(req,res)=>{
+    //console.log(req.params);
+    let id = req.params.id;
+    //console.log(id);
+    Product.findOne({id: id},async (err, product) => {
+        if (err) throw err;
+        product.title = req.body.title;
+        product.caption = req.body.cap;
+        let arrayLinks = req.body.imagesEditLink;
+        product.images=[];
+        arrayLinks.map(link => {
+            product.images.push(link);
+        });
+        product.seller = req.user._id;
+        product.price=req.body.price;
+        product.quantity=req.body.quantity;
+        await product.save(err => {
+            if (err) throw err;
+            let data={
+                done:true,
+                url:"/"
+            };
+            res.send(data);
+        });
+       
+    });
+    // console.log(req.body);
+    // res.send("done");
 });
 module.exports = router;

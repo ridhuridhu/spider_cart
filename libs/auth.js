@@ -9,5 +9,17 @@ module.exports = {
       res.redirect('/');
     else
       return next();
-  }
-}
+  },
+  ensureBuyer:(req,res,next)=>{
+    let user=req.user;
+    if(user.type=="Buyer")
+      return next();
+    res.redirect("/");
+  },
+  ensureSeller:(req,res,next)=>{
+    let user=req.user;
+    if(!(user.type=="Buyer"))
+      return next();
+    res.redirect("/");
+  },
+};
