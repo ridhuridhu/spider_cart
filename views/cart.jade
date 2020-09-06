@@ -2,10 +2,37 @@ extends layout
 
 block head
     title #{user.name} | cart
+    link(rel="stylesheet", href="/style/cart.css")
 
 block content
-    h1 cart 
-
-    p #{cart}
-    hr
-    h4 Total #{cart.total}
+    .container
+        p #{user}
+        hr
+        h1 cart
+        p #{cart}
+        hr
+        -if((cart)){
+            h1 Total : #{cart.total}
+            a(href="/cart/order" class="btn btn-success" ) Order 
+            .cart
+                -for(let i=0;i<cart.items.length;i++){
+                    .cartPro
+                        h4.card-title  #{cart.items[i].title}
+                        p.card-body
+                            | price :  #{cart.items[i].price}
+                            | quantity: #{cart.items[i].quantity}
+                            p
+                                | quantity : 
+                                a#roundCart.btn.btn-outline-success(href='')
+                                    | +
+                                a.btn.btn-outline-danger(href='/')
+                                    | −
+                                hr
+                                a.btn.btn-danger(href='/delete')  Remove 
+                                a.btn.btn-primary(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit
+                -}
+        -}
+        -else{
+            h1 Your Cart is Empty
+        -}
+        br

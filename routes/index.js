@@ -1,9 +1,16 @@
 const router = require('express').Router();
 const multer = require("multer");
-const {ensureGuest,ensureAuthenticated,ensureSeller,ensureBuyer} = require('../libs/auth');
-const Product=require("../models/Product");
-
+const {
+    ensureGuest,
+    ensureAuthenticated,
+    ensureSeller,
+    ensureBuyer
+} = require('../libs/auth');
+const Product = require("../models/Product");
+const User = require("../models/User");
+const Cart = require("../models/Cart");
 const path = require('path');
+const moment = require("moment");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/');
@@ -18,11 +25,11 @@ const upload = multer({
     storage: storage
 });
 
-router.get('/',ensureAuthenticated, (req, res) => {
-    let user=req.user;
-    if(user.type=="Buyer"){
+router.get('/', ensureAuthenticated, (req, res) => {
+    let user = req.user;
+    if (user.type == "Buyer") {
         res.redirect("/buyer");
-    }else{
+    } else {
         res.redirect("/seller");
     }
     //res.render('index', {user: req.user});
@@ -37,7 +44,7 @@ router.post('/profile', upload.single('avatar'), function (req, res, next) {
 router.post("/search/:q", async (req, res) => {
     let q = req.params.q;
     //console.log(q);
-    let div = " ";
+    let div = "<ul> ";
     await Product.find({}, (err, products) => {
         //console.log(products.length);
         if (err) throw err;
@@ -45,18 +52,143 @@ router.post("/search/:q", async (req, res) => {
             let query = (p.title).search(q);
             //console.log(p.title,query);
             if (query >= 0) {
-                div += `<a class="dropdown-item"" href="/show/${p.id}">${p.title}  </a> `;
+                div += `<li><a class="searchList" href="/show/${p.id}">${p.title}  </a></li>`;
                 //console.log(div);
             }
         });
     });
-    //console.log(req.params);
+    div += "</ul>";
     res.send(div);
 });
-router.get("/show/:id",(req,res)=>{
-    Product.findOne({id:req.params.id},(err,product)=>{
-        if(err) throw err;
-        res.render("showPro",({user:req.user,product}));
+router.get("/show/:id", (req, res) => {
+    Product.findOne({
+        id: req.params.id
+    }, (err, product) => {
+        if (err) throw err;
+        res.render("showPro", ({
+            user: req.user,
+            product
+        }));
     });
+});
+router.get("/cart", async (req, res) => {
+    await Cart.findOne({
+        user: req.user._id
+    }, (err, cart) => {
+        if (err) throw err;
+        //console.log(cart);
+        res.render("cart", {
+            user: req.user,
+            cart: cart
+        });
+    });
+
+});
+
+router.get("/cart/show/:id",(req,res)=>{
+    Product.findById(req.params.id,(err,product)=>{
+        if (err) throw err;
+        res.render("showPro", ({
+            user: req.user,
+            product:product
+        }));
+
+    });
+});
+router.post("/cart/add/:id", async (req, res) => {
+    let id = req.params.id;
+    await Product.findOne({
+        id: id
+    }, async (err, product) => {
+        if (err) throw err;
+        await Cart.findOne({
+            user: req.user._id
+        }, async (err, cart) => {
+            if (err) throw err;
+            if (!(cart)) {
+                let newCart = new Cart();
+                newCart.user = req.user._id;
+                newCart.items.push({
+                    item: product._id,
+                    title: product.title,
+                    price: product.price,
+                    quantity: 1,
+                    data: (moment().format("LLLL"))
+                });
+                newCart.total = (product.price);
+                await newCart.save((err) => {
+                    if (err) throw err;
+                    //res.send("new cart added");
+                });
+            } else {
+                let t = 0;
+                //console.log(cart.id);
+                for (let i = 0; i < cart.items.length; i++) {
+                    if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
+                        cart.items[i].quantity++;
+                        cart.total += product.price;
+                        await cart.save((err) => {
+                            if (err) throw err;
+                            //res.send("quantity updated");
+                        });
+                    } else {
+                        t++;
+                    }
+                }
+                if (t == cart.items.length) {
+                    cart.items.push({
+                        item: product._id,
+                        title: product.title,
+                        price: product.price,
+                        quantity: 1,
+                        data: (moment().format("LLLL"))
+                    });
+                    cart.total += product.price;
+                    await cart.save((err) => {
+                        if (err) throw err;
+                        // res.send("new item added to cart");
+                    });
+                }
+            }
+        });
+    });
+    //console.log(moment().format("LLLL"));
+    res.send("added");
+});
+
+router.get("/cart/remove/:id", async (req, res) => {
+    let id = req.params.id;
+    await Product.findOne({
+        id: id
+    }, async (err, product) => {
+        if (err) throw err;
+        await Cart.findOne({
+            user: req.user._id
+        }, (err, cart) => {
+            if (err) throw err;
+            for (let i = 0; i < cart.items.length; i++) {
+                if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
+                    if (cart.items[i].quantity == 1) {
+                        cart.total -= cart.items[i].price;
+                        cart.items.splice(i, 1);
+                        cart.save(err => {
+                            if (err) throw err;
+                        });
+                    } else {
+                        cart.items[i].quantity--;
+                        cart.total -= cart.items[i].price;
+                        cart.save((err) => {
+                            if (err) throw err;
+                        });
+                    }
+                }
+            }
+
+        });
+
+    });
+
+    res.send("removed");
+
 });
 module.exports = router;

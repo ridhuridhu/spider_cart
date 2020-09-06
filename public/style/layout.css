@@ -2,31 +2,66 @@ body {
 	background-color: #f4f4f4;
 	font-family: 'Open Sans', sans-serif;
 }
-.container{
+
+.container {
 	background-color: white;
 }
-.card{
+
+.card {
 	padding: 0 15px;
 }
-nav{
+
+nav {
 	font-size: 18px;
 }
-#navbar a,#span{
+
+#navbar a,
+#span {
 	color: #000;
-  
+
 }
+
 .navbar-toggler {
 	color: #000;
 
 }
-#navbar a:hover{
+
+#navbar a:hover {
 	color: #f4f4f4;
-   
+
 }
-#navbar{
+
+#navbar {
 	background-color: #ab000d;
 }
-.navbar-brand img{
+
+.navbar-brand img {
 	width: 100%;
 	max-width: 150px;
+}
+
+.search {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 350px;
+}
+
+.input-group-append {
+	cursor: pointer;
+}
+.showSearch{
+	width: 100%;
+	max-width: 350px;
+	margin: 0 auto;
+	padding: 3px;
+}
+.searchList{
+	display: inline-block;
+    white-space: nowrap;
+	width: 100%;
+	position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	vertical-align: center;
+	z-index: 100;
 }

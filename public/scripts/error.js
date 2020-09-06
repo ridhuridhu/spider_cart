@@ -21,13 +21,9 @@ passwordBox.addEventListener("keyup",()=>{
         valid=true;
         passValid.style.display="none";
     }
-
-    //console.log(testString(p));
-
     if(valid){
         submitBtn.classList.remove("disabled");
         submitBtn.style.cursor="pointer";
-
     }else{
         submitBtn.classList.add("disabled");
         submitBtn.style.cursor="none";

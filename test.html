@@ -14,98 +14,122 @@
 </head>
 
 <body>
-  <div class="show">
-    <h1 class="card-title"> Title </h1>
-    <div class="showPro">
-      <img id="mainImg" src="./uploads/avatar-1599127062166.jpg" alt="img">
+  
+  <br>
+
+  <div class="cart">
+    <div class="cartPro">
+      <h4 class="card-title"> Lorem, ipsum dolor. </h4>
       <p class="card-body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro exercitationem facere hic soluta deleniti,
-        architecto amet iure nesciunt id natus dolore. Quam quas quis mollitia sit aliquam optio fuga minus debitis
-        asperiores itaque illum nesciunt nihil recusandae animi maxime rem odit, neque architecto non quaerat cumque
-        ipsam? Esse, harum voluptatum.
-        <br>
-         Price: <button class="btn btn-outline-primary"> 500 </button>
-         <br>
-         <br>
-        <a class="btn btn-success" href="/cart/add/id"> Add to Cart </a>
-      </p>
+          price : 500
+          quantity: 2
+          <p>
+            quantity : <a id="roundCart" class="btn btn-outline-success" href="">
+               &#x2b;
+            </a> <a class="btn btn-outline-danger" href="/">
+              &#x2212;
+            </a>
+            <hr>
+            <a class="btn btn-danger" href="/delete"> Remove </a>
+        
+          </p>
+          
+        </p>
     </div>
-    <hr>
-    <div class="imgList">
-      <img onclick="updateImage(this)" src="./uploads/avatar-1599127062166.jpg" alt="">
-      <img  onclick="updateImage(this)" src="./uploads/avatar-1599127066386.jpg" alt="">
-      <img  onclick="updateImage(this)" src="./uploads/avatar-1599127070889.jpg" alt="">
-    </div>
+
+
+
+
   </div>
 
+  <!-- <div class="homeShow">
+    <div class="homePro">
+      <h4 class="homeTitle">Lorem, ipsum dolor.</h4>
+      <img class="homeProImg" src="./uploads/avatar-1599127062166.jpg" alt="img">
+      <a class="btn btn-primary" href="/show/id"> Visit </a>
+      <a class="btn btn-success" href="/cart/add/id"> Add to cart </a>
+    </div>
+  </div> -->
 
 
 
-
-  <!-- login -->
-  <!-- signUp -->
-  <!-- navbar -->
-  <!-- homepage Flex box  -->
 </body>
-
 </html>
-<script>
-  function updateImage(data){
-    let mainImg=document.getElementById("mainImg");
-    mainImg.src=data.src;
-  }
-
-</script>
 <style>
-  body {
+  body{
     background-color: #f4f4f4;
   }
-  .show{
-    margin: 10px auto;
-    padding: 10px;
-
-  }
-  .card-title{
-    text-align: center;
-    
-  }
-  .showPro {
-    display: flex;
-    margin: 5px auto;
-
-  }
-
-  #mainImg {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .imgList{
+  .cart{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .imgList img {
-   
-    width: 100%;
-    max-width: 150px;
-    margin: 5px auto;
-    cursor: pointer;
-
+    flex: 1;
     
   }
+  .cartPro{
+    padding: 15px;
+    border: 1px solid silver;
+    margin: 10px auto;
+    width: 80%;
+  }
 
-  @media (max-width: 576px) {
-    .showPro {
+  @media only screen and (min-width: 200px) and (max-width: 767px)  {
+    .cart {
       flex-direction: column;
+     
     }
   }
-
-  @media (min-width: 577px) {
-    .showPro {
+  @media only screen and (min-width: 768px) and (max-width: 1024px)  {
+    .cart {
       flex-direction: row;
+  
+    }
+  
     }
 
+
+</style>
+
+
+
+<style>
+  .homePro{
+    border: 1px solid silver;
+    padding: 15px;
+    width: 100%;
+    max-width: 260px;
+    margin: 10px auto;
     
   }
+  .homeShow{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    
+  }
+  .homeProImg{
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  .homeTitle{
+    margin: 0 auto;
+  }
+  .homePro a{
+    margin: 10px;
+  }
+  @media only screen and (min-width: 200px) and (max-width: 767px)  {
+    .homeShow {
+      flex-direction: column;
+     
+    }
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1024px)  {
+    .homeShow {
+      flex-direction: row;
+  
+    }
+  
+    }
+  
+ 
 </style>

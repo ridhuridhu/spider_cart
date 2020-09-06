@@ -10,6 +10,13 @@ block head
     link(rel="stylesheet", href="../style/dashboard.css")
 
 block content 
+    .search.input-group.mb-3
+        input#searchBox.form-control(type='text', placeholder='Search ......', aria-label="Recipient's username")
+        .input-group-append
+        span.input-group-text
+            i.fa.fa-search
+
+    .showSearch
     h1.alert-success Welcome #{user.name} 
     -if(buyer){
         h1 Buyer 

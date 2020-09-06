@@ -2,7 +2,7 @@ extends layout
 
 block head 
     title Spider Cart | #{product.title}
-    link(rel="stylesheet", href="../style/showPro.css")
+    link(rel="stylesheet", href="/style/showPro.css")
 block content
     .show
         h1.card-title #{product.title}
@@ -14,8 +14,14 @@ block content
                 button.btn.btn-outline-primary  Price:  #{product.price}  &nbsp;
                 
                 button.btn.btn-outline-danger  Items Left :  #{product.quantity} &nbsp;
+                -if((product.quantity)>0){
+                    a.btn.btn-success(onclick='addToCart(#{product.id})', id="product_#{product.id}")  Add to Cart  &nbsp;
+                -}
+                -else{
+                    a.btn.btn-danger(href="#") Out Of Stock ! &nbsp;
+                -}
                 
-                a.btn.btn-success(href='/cart/add/#{product.id}')  Add to Cart  &nbsp;
+               
         hr
         .imgList
             -for(var i=0;i<product.images.length;i++){
@@ -27,4 +33,4 @@ block content
 
 
 
-    script(src="../scripts/showPro.js")
+    script(src="/scripts/showPro.js")

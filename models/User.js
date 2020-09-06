@@ -9,21 +9,6 @@ const userSchema = new mongoose.Schema({
   password: {type: String, required: true},
   type:{type:String},
   id:{type:Number,unique:true,required:false},
-  cart:[{
-    item:{type:mongoose.Schema.Types.ObjectId},
-    title:{type:String},
-    price:{type:Number},
-    quantity:{type:Number},
-    data:{type:String},
-  }],
-  order:[{
-    item:{type:mongoose.Schema.Types.ObjectId},
-    title:{type:String},
-    price:{type:Number},
-    quantity:{type:Number},
-    data:{type:String},
-
-  }],
   Date:{type:Date,default:Date.now()},
 
 });
