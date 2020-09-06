@@ -1,18 +1,43 @@
 const router = require('express').Router();
 const Product = require('../models/Product');
+const User=require("../models/User");
+const Shipping=require("../models/Shipping");
 const {ensureGuest,ensureAuthenticated,ensureSeller,ensureBuyer} = require('../libs/auth');
 router.get("/", ensureSeller,ensureAuthenticated,(req, res) => {
     Product.find({seller:req.user._id},(err,products)=>{
-        //console.log(products);
-        var user=req.user;
-        products.reverse();
-        res.render("dashboard", {
-            buyer: false,
-            user:user,
-            products:products
+        if(err) throw err;
+        Shipping.findOne({seller:req.user._id},(err,s)=>{
+            if(err) throw err;
+            var user=req.user;
+            products.reverse();
+            s.shipping.reverse();
+            res.render("dashboard", {
+                buyer: false,
+                user:user,
+                products:products,
+                s:s
+            });
         });
     });
     
+});
+
+router.get("/shipping",(req,res)=>{
+    let user=req.user;
+    Shipping.findOne({seller:user._id},(err,s)=>{
+        if(err) throw err;
+        res.render("trackOrders",{s:s});
+    });
+});
+
+router.post("/userData",(req,res)=>{
+    let id=(req.body.id);
+    User.findById(id,(err,user)=>{
+        if(err) throw err;
+        res.send(user);
+    });
+
+
 });
 
 router.get('/add',ensureSeller,ensureAuthenticated, (req, res) => {

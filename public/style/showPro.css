@@ -36,16 +36,16 @@
 
 }
 
-@media only screen and (min-width: 200px) and (max-width: 767px)  {
+@media only screen and (min-width: 200px) and (max-width: 767px) {
   .showPro {
     flex-direction: column;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1024px)  {
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .showPro {
     flex-direction: row;
 
   }
 
-  }
-
+}

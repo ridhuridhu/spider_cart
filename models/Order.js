@@ -26,9 +26,7 @@ const orderSchema = new mongoose.Schema({
         quantity: {
             type: Number
         },
-        data: {
-            type: String
-        },
+
         seller: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"

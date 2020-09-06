@@ -9,6 +9,8 @@ const {
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Cart = require("../models/Cart");
+const Order = require("../models/Order");
+const Shipping=require("../models/Shipping");
 const path = require('path');
 const moment = require("moment");
 const storage = multer.diskStorage({
@@ -85,12 +87,12 @@ router.get("/cart", async (req, res) => {
 
 });
 
-router.get("/cart/show/:id",(req,res)=>{
-    Product.findById(req.params.id,(err,product)=>{
+router.get("/cart/show/:id", (req, res) => {
+    Product.findById(req.params.id, (err, product) => {
         if (err) throw err;
         res.render("showPro", ({
             user: req.user,
-            product:product
+            product: product
         }));
 
     });
@@ -156,39 +158,97 @@ router.post("/cart/add/:id", async (req, res) => {
     res.send("added");
 });
 
-router.get("/cart/remove/:id", async (req, res) => {
-    let id = req.params.id;
-    await Product.findOne({
-        id: id
-    }, async (err, product) => {
+router.post("/cart/remove/", (req, res) => {
+    let id = req.body.id;
+    console.log(id);
+    Cart.findOne({
+        user: req.user._id
+    }, (err, cart) => {
         if (err) throw err;
-        await Cart.findOne({
-            user: req.user._id
-        }, (err, cart) => {
-            if (err) throw err;
-            for (let i = 0; i < cart.items.length; i++) {
-                if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
-                    if (cart.items[i].quantity == 1) {
-                        cart.total -= cart.items[i].price;
-                        cart.items.splice(i, 1);
-                        cart.save(err => {
-                            if (err) throw err;
-                        });
-                    } else {
-                        cart.items[i].quantity--;
-                        cart.total -= cart.items[i].price;
-                        cart.save((err) => {
-                            if (err) throw err;
-                        });
-                    }
-                }
-            }
+        for (let i = 0; i < cart.items.length; i++) {
+            console.log(cart.items[i].item===id);
+            if (JSON.stringify(cart.items[i].item) == JSON.stringify(id)) {
+                console.log("object");
+                cart.total -=( cart.items[i].price)*cart.items[i].quantity;
+                cart.items.splice(i, 1);
+                cart.save(err => {
+                    if (err) throw err;
+                    res.send("done");
+                });
 
-        });
+            }
+        }
 
     });
 
-    res.send("removed");
 
+
+    //res.send("removed");
+
+});
+
+router.get("/cart/order",async(req,res)=>{
+    let user=req.user;
+  await Cart.findOne({user:user._id},async(err,cart)=>{
+        if(err) throw err;
+        let items=[];
+        let itemsShip=[];
+        let buyer=user._id;
+        //console.log(cart.items);
+        for(let i=0;i<cart.items.length;i++){
+            var item=cart.items[i].item;
+           await Product.findById(cart.items[i].item,async(err,pro)=>{
+                if(err) throw err;
+                var seller=pro.seller;
+                var title=cart.items[i].title;
+                var price=cart.items[i].price;
+                var quantity=cart.items[i].quantity;
+                pro.quantity--;
+                var x={
+                    item,
+                    title,
+                    price,
+                    quantity,
+                    seller,
+                };
+                var y={ 
+                    item,
+                    title,
+                    price,
+                    quantity,
+                    buyer,
+                };
+                items.push(x);
+                itemsShip.push(y);
+                await Shipping.findOne({seller:seller},(err,S)=>{
+                    S.shipping.push(y);
+                    S.save(err=>{
+                        if(err) throw err;
+                    });
+                });
+               await pro.save(err=>{
+                    if(err) throw err;
+                });
+            });
+        }
+
+        for(var i=0;i<items.length;i++){
+            await Order.findOne({buyer:user._id},(err,O)=>{
+                O.order.push(items[i]);
+                O.save(err=>{
+                    if(err) throw err;
+    
+                });
+            });
+
+        }
+        cart.items=[];
+        cart.save(err=>{
+            if(err) throw err;
+
+        });
+
+    }); 
+    res.send("hi");
 });
 module.exports = router;

@@ -49,19 +49,21 @@ nav {
 .input-group-append {
 	cursor: pointer;
 }
-.showSearch{
+
+.showSearch {
 	width: 100%;
 	max-width: 350px;
 	margin: 0 auto;
 	padding: 3px;
 }
-.searchList{
+
+.searchList {
 	display: inline-block;
-    white-space: nowrap;
+	white-space: nowrap;
 	width: 100%;
 	position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	vertical-align: center;
 	z-index: 100;
 }

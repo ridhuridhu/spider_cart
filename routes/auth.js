@@ -2,6 +2,8 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../models/User');
+const Order = require("../models/Order");
+const Shipping=require("../models/Shipping");
 const {
 	ensureGuest,
 	ensureAuthenticated
@@ -84,12 +86,29 @@ router.post('/register', (req, res) => {
 							type:req.body.type,
 							username:req.body.username,
 						});
+		
 						bcrypt.genSalt(10, (err, salt) => {
 							bcrypt.hash(newUser.password, salt, (err, hash) => {
 								if (err) throw err;
 								newUser.password = hash;
 								newUser.save()
 									.then(user => {
+										if(newUser.type=="Buyer"){
+											//console.log("buyer");
+											let newOrder=new Order();
+											newOrder.buyer=user._id;
+											newOrder.save(err=>{
+												if(err) throw err;
+											});
+				
+										}
+										else{
+											let newShip=new Shipping();
+											newShip.seller=user._id;
+											newShip.save(err=>{
+												if(err) throw err;
+											});
+										}
 	
 										console.log(`User ${user._id} register!`);
 										req.flash("success","you have successfully registered ! Login Now ");

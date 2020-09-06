@@ -9,6 +9,8 @@ function addToCart(id){
   let data={
     id:id,
   };
+  let change=document.getElementById(`product_${id}`);
+  (change.innerHTML="Added !");
 $.ajax({
     type: "POST",
     url: `/cart/add/${id}`,

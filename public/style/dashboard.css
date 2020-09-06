@@ -1,26 +1,72 @@
 .products {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.showProImg {
+  width: 100%;
+  min-width: 150px;
+  max-width: 200px;
+  margin: auto;
+  position: relative;
+  background-color: white;
+  border: 1px solid silver;
+  padding: 10px;
+}
+
+#proImg {
+  margin: 5px auto;
+}
+
+.showPro {
+  padding: 10px;
+  border: 1px solid silver;
+  width: 100%;
+  max-width: 350px;
+  margin: 1px auto;
+}
+
+.homePro {
+  border: 1px solid silver;
+  padding: 15px;
+  width: 100%;
+  max-width: 260px;
+  margin: 10px auto;
+
+}
+
+.homeShow {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+
+}
+
+.homeProImg {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.homeTitle {
+  margin: 0 auto;
+}
+
+.homePro a {
+  margin: 10px;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 767px) {
+  .homeShow {
+    flex-direction: column;
+
   }
-  
-  .showProImg {
-    width: 100%;
-    min-width: 150px;
-    max-width: 200px;
-    margin: auto;
-    position: relative;
-    background-color: white;
-    border: 1px solid silver;
-    padding: 10px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .homeShow {
+    flex-direction: row;
+
   }
-  
-  #proImg{
-    margin: 5px auto;
-  }
-  .showPro {
-    padding: 10px;
-    border: 1px solid silver;
-    width: 100%;
-    max-width: 350px;
-    margin: 1px auto;
-  }
+
+}

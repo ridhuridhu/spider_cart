@@ -6,29 +6,25 @@ block head
 
 block content
     .container
-        p #{user}
-        hr
-        h1 cart
-        p #{cart}
-        hr
-        -if((cart)){
+        -if((cart.items.length)){
             h1 Total : #{cart.total}
             a(href="/cart/order" class="btn btn-success" ) Order 
             .cart
                 -for(let i=0;i<cart.items.length;i++){
-                    .cartPro
-                        h4.card-title  #{cart.items[i].title}
+                    .cartPro(class="#{cart.items[i]._id}")
+                        h4.card-title  #{cart.items[i].title} 
                         p.card-body
                             | price :  #{cart.items[i].price}
-                            | quantity: #{cart.items[i].quantity}
+                            | quantity: 
+                            span(id="#{cart.items[i].item}") #{cart.items[i].quantity}
                             p
                                 | quantity : 
-                                a#roundCart.btn.btn-outline-success(href='')
+                                button#roundCart.btn.btn-outline-success(href='#' onclick="plus(#{cart.items[i].item})" )
                                     | +
-                                a.btn.btn-outline-danger(href='/')
+                                button.btn.btn-outline-danger(href='#' onclick="quantity(#{cart.items[i].item},'minus')" )
                                     | −
                                 hr
-                                a.btn.btn-danger(href='/delete')  Remove 
+                                button.btn.btn-danger(onclick="remove(this)" id="#{cart.items[i].item}")  Remove 
                                 a.btn.btn-primary(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit
                 -}
         -}
@@ -36,3 +32,4 @@ block content
             h1 Your Cart is Empty
         -}
         br
+    script(src="/scripts/cart.js")

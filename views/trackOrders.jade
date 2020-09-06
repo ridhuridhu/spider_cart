@@ -1,0 +1,37 @@
+extends layout 
+
+block head
+    title #{user.name} | Orders
+    link(rel="stylesheet", href="/style/dashboard.css")
+
+block content
+    .container
+    -if(orders){
+        -orders.order.reverse()
+        .homeShow
+        -for(let i=0;i<orders.order.length;i++){
+            .homePro
+                h4.homeTitle #{orders.order[i].title}
+                a.btn.btn-primary(href='/cart/show/#{orders.order[i].item}')  Visit 
+                p.card-body
+                    |  Price : #{orders.order[i].price}
+                    | Quantity : #{orders.order[i].quantity}
+                //a.btn.btn-success(href='/cart/add/#{products[i].id}')  Add to cart 
+        -}
+           
+    -}
+    -if(s){
+        .homeShow
+            -for(let i=0;i<s.shipping.length;i++){
+                .homePro
+                    h4.homeTitle #{s.shipping[i].title}
+                    p.btn.btn-primary(onclick="getUser(this.id,this)" id="#{s.shipping[i].buyer}")  get customer details
+                    p.card-body
+                        |  Price : #{s.shipping[i].price}
+                        | Quantity : #{s.shipping[i].quantity}
+            -}
+
+    -}
+
+
+    script(src="/scripts/track.js")

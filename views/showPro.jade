@@ -9,10 +9,7 @@ block content
         .showPro
             img#mainImg(src='#{product.images[0]}', alt='img')
             p.card-body #{product.caption}
-            
-                  
                 button.btn.btn-outline-primary  Price:  #{product.price}  &nbsp;
-                
                 button.btn.btn-outline-danger  Items Left :  #{product.quantity} &nbsp;
                 -if((product.quantity)>0){
                     a.btn.btn-success(onclick='addToCart(#{product.id})', id="product_#{product.id}")  Add to Cart  &nbsp;
