@@ -45,17 +45,24 @@ router.post('/profile', upload.single('avatar'), function (req, res, next) {
 //search
 router.post("/search/:q", async (req, res) => {
     let q = req.params.q;
-    //console.log(q);
+    ////console.log(q);
     let div = "<ul> ";
     await Product.find({}, (err, products) => {
-        //console.log(products.length);
+        ////console.log(products.length);
         if (err) throw err;
         products.map(p => {
             let query = (p.title).search(q);
-            //console.log(p.title,query);
+            ////console.log(p.title,query);
             if (query >= 0) {
                 div += `<li class="list-group-item"><a class="searchList  " href="/show/${p.id}">${p.title}  </a></li>`;
-                //console.log(div);
+                ////console.log(div);
+            }
+            else{
+                let q1=((p.title).toUpperCase()).search(q.toUpperCase());
+                    if(q1>=0){
+                        div += `<li class="list-group-item"><a class="searchList  " href="/show/${p.id}">${p.title}  </a></li>`;
+                    }
+                
             }
         });
     });
@@ -78,7 +85,7 @@ router.get("/cart", async (req, res) => {
         user: req.user._id
     }, (err, cart) => {
         if (err) throw err;
-        //console.log(cart);
+        ////console.log(cart);
         res.render("cart", {
             user: req.user,
             cart: cart
@@ -100,7 +107,7 @@ router.get("/cart/show/:id", (req, res) => {
 router.post("/cart/add/:id", async (req, res) => {
     let id = req.params.id;
     let quantity=req.body.quantity;
-    console.log(quantity);
+    //console.log(quantity);
     await Product.findOne({
         id: id
     }, async (err, product) => {
@@ -126,7 +133,7 @@ router.post("/cart/add/:id", async (req, res) => {
                 });
             } else {
                 let t = 0;
-                //console.log(cart.id);
+                ////console.log(cart.id);
                 for (let i = 0; i < cart.items.length; i++) {
                     if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
                         cart.items[i].quantity+=quantity;
@@ -156,21 +163,21 @@ router.post("/cart/add/:id", async (req, res) => {
             }
         });
     });
-    //console.log(moment().format("LLLL"));
+    ////console.log(moment().format("LLLL"));
     res.send("added");
 });
 
 router.post("/cart/remove/", (req, res) => {
     let id = req.body.id;
-    console.log(id);
+    //console.log(id);
     Cart.findOne({
         user: req.user._id
     }, (err, cart) => {
         if (err) throw err;
         for (let i = 0; i < cart.items.length; i++) {
-            console.log(cart.items[i].item===id);
+            //console.log(cart.items[i].item===id);
             if (JSON.stringify(cart.items[i].item) == JSON.stringify(id)) {
-                //console.log("object");
+                ////console.log("object");
                 cart.total -=( cart.items[i].price)*cart.items[i].quantity;
                 cart.items.splice(i, 1);
                 cart.save(err => {
@@ -196,7 +203,7 @@ router.get("/cart/order",async(req,res)=>{
         let items=[];
         let itemsShip=[];
         let buyer=user._id;
-        //console.log(cart.items);
+        ////console.log(cart.items);
         for(let i=0;i<cart.items.length;i++){
             var item=cart.items[i].item;
            await Product.findById(cart.items[i].item,async(err,pro)=>{

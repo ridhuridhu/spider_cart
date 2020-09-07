@@ -18,7 +18,7 @@ router.get("/orders",(req,res)=>{
     let user=req.user;
     Order.findOne({buyer:user._id},(err,o)=>{
         if(err) throw err;
-        console.log(o.order[0].length);
+        //console.log(o.order[0].length);
         res.render("trackOrders",{orders:o});
     });
 }); 

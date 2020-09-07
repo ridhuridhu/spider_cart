@@ -27,9 +27,13 @@ $("#searchBox").keyup((e) => {
 
         }
     });
-
+    if(!(query.value)){
+        $(".showSearch").hide();
+    }
 
 });
+
+
 
 
 

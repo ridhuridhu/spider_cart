@@ -67,7 +67,7 @@ router.post("/add", async(req, res) => {
 
 router.get("/edit/:id", ensureSeller,(req, res) => {
     let id = req.params.id;
-    //console.log(id);
+    ////console.log(id);
     Product.findOne({
         id: id
     }, (err, product) => {
@@ -79,9 +79,9 @@ router.get("/edit/:id", ensureSeller,(req, res) => {
 
 });
 router.post("/edit/:id",ensureSeller,(req,res)=>{
-    //console.log(req.params);
+    ////console.log(req.params);
     let id = req.params.id;
-    //console.log(id);
+    ////console.log(id);
     Product.findOne({id: id},async (err, product) => {
         if (err) throw err;
         product.title = req.body.title;
@@ -104,7 +104,7 @@ router.post("/edit/:id",ensureSeller,(req,res)=>{
         });
        
     });
-    // console.log(req.body);
+    // //console.log(req.body);
     // res.send("done");
 });
 module.exports = router;

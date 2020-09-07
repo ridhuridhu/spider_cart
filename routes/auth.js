@@ -110,7 +110,7 @@ router.post('/register', (req, res) => {
 											});
 										}
 	
-										console.log(`User ${user._id} register!`);
+										//console.log(`User ${user._id} register!`);
 										req.flash("success","you have successfully registered ! Login Now ");
 										res.redirect('login');
 	
