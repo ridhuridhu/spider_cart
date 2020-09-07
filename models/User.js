@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema({
   type:{type:String},
   id:{type:Number,unique:true,required:false},
   Date:{type:Date,default:Date.now()},
-
+  phone:{type:String},
+  address:{type:String},
+ 
 });
 
 userSchema.plugin(AutoIncrement,{id:"id_user",inc_field:"id"});

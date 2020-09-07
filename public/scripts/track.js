@@ -14,6 +14,8 @@ function getUser(id,tagData){
             tagData.innerHTML=`<p>
                name: ${data.name}
                 <hr>
+                phone :${data.phone}
+                address:${data.address}
                email:${data.email}
             
             </p>`;

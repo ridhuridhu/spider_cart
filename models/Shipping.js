@@ -26,7 +26,7 @@ const shippingSchema = new mongoose.Schema({
         quantity: {
             type: Number
         },
-        data: {
+        date: {
             type: String
         },
         buyer: {

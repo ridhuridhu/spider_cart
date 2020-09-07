@@ -14,6 +14,7 @@ block content
                     .homePro
                         h4.homeTitle #{orders.order[i].title}
                         a.btn.btn-primary(href='/cart/show/#{orders.order[i].item}')  Visit 
+                        p.text-muted #{orders.order[i].date}
                         p.card-body
                             ul.list-group
                                 li.list-group-item 
@@ -33,6 +34,7 @@ block content
                 .homePro
                     h4.homeTitle #{s.shipping[i].title}
                     p.btn.btn-primary(onclick="getUser(this.id,this)" id="#{s.shipping[i].buyer}")  get customer details
+                    p.text-muted  #{s.shipping[i].date}
                     p.card-body
                         ul.list-group
                             li.list-group-item 

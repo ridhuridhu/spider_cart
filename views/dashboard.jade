@@ -22,7 +22,7 @@ block content
         h4 Recent Order
         -orders.order.reverse()
         .homePro
-            h4.homeTitle #{orders.order[1].title}
+            h4.homeTitle #{orders.order[0].title}
             a(href="/buyer/orders" class="btn btn-success") See Recent Orders   
         hr
         h4 Home Feed 

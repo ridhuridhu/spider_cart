@@ -212,6 +212,8 @@ router.get("/cart/order",async(req,res)=>{
                 var title=cart.items[i].title;
                 var price=cart.items[i].price;
                 var quantity=cart.items[i].quantity;
+                var date=JSON.stringify(moment().format("LLLL"));
+                console.log(date)
                 pro.quantity--;
                 var x={
                     item,
@@ -219,6 +221,7 @@ router.get("/cart/order",async(req,res)=>{
                     price,
                     quantity,
                     seller,
+                    date,
                 };
                 var y={ 
                     item,
@@ -226,6 +229,7 @@ router.get("/cart/order",async(req,res)=>{
                     price,
                     quantity,
                     buyer,
+                    date,
                 };
                 items.push(x);
                 itemsShip.push(y);
