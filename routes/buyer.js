@@ -16,9 +16,10 @@ router.get("/",(req,res)=>{
 
 router.get("/orders",(req,res)=>{
     let user=req.user;
-    Order.findOne({buyer:user._id},(err,orders)=>{
+    Order.findOne({buyer:user._id},(err,o)=>{
         if(err) throw err;
-        res.render("trackOrders",{orders:orders});
+        console.log(o.order[0].length);
+        res.render("trackOrders",{orders:o});
     });
 }); 
 

@@ -54,7 +54,7 @@ router.post("/search/:q", async (req, res) => {
             let query = (p.title).search(q);
             //console.log(p.title,query);
             if (query >= 0) {
-                div += `<li><a class="searchList" href="/show/${p.id}">${p.title}  </a></li>`;
+                div += `<li class="list-group-item"><a class="searchList  " href="/show/${p.id}">${p.title}  </a></li>`;
                 //console.log(div);
             }
         });
@@ -99,6 +99,8 @@ router.get("/cart/show/:id", (req, res) => {
 });
 router.post("/cart/add/:id", async (req, res) => {
     let id = req.params.id;
+    let quantity=req.body.quantity;
+    console.log(quantity);
     await Product.findOne({
         id: id
     }, async (err, product) => {
@@ -114,7 +116,7 @@ router.post("/cart/add/:id", async (req, res) => {
                     item: product._id,
                     title: product.title,
                     price: product.price,
-                    quantity: 1,
+                    quantity: quantity,
                     data: (moment().format("LLLL"))
                 });
                 newCart.total = (product.price);
@@ -127,7 +129,7 @@ router.post("/cart/add/:id", async (req, res) => {
                 //console.log(cart.id);
                 for (let i = 0; i < cart.items.length; i++) {
                     if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
-                        cart.items[i].quantity++;
+                        cart.items[i].quantity+=quantity;
                         cart.total += product.price;
                         await cart.save((err) => {
                             if (err) throw err;
@@ -168,7 +170,7 @@ router.post("/cart/remove/", (req, res) => {
         for (let i = 0; i < cart.items.length; i++) {
             console.log(cart.items[i].item===id);
             if (JSON.stringify(cart.items[i].item) == JSON.stringify(id)) {
-                console.log("object");
+                //console.log("object");
                 cart.total -=( cart.items[i].price)*cart.items[i].quantity;
                 cart.items.splice(i, 1);
                 cart.save(err => {
@@ -243,12 +245,13 @@ router.get("/cart/order",async(req,res)=>{
 
         }
         cart.items=[];
+        cart.total=0;
         cart.save(err=>{
             if(err) throw err;
 
         });
 
     }); 
-    res.send("hi");
+    res.redirect("/cart");
 });
 module.exports = router;

@@ -9,15 +9,22 @@ block content
     -if(orders){
         -orders.order.reverse()
         .homeShow
-        -for(let i=0;i<orders.order.length;i++){
-            .homePro
-                h4.homeTitle #{orders.order[i].title}
-                a.btn.btn-primary(href='/cart/show/#{orders.order[i].item}')  Visit 
-                p.card-body
-                    |  Price : #{orders.order[i].price}
-                    | Quantity : #{orders.order[i].quantity}
-                //a.btn.btn-success(href='/cart/add/#{products[i].id}')  Add to cart 
-        -}
+            -for(let i=0;i<orders.order.length;i++){
+                -if(orders.order[i]){
+                    .homePro
+                        h4.homeTitle #{orders.order[i].title}
+                        a.btn.btn-primary(href='/cart/show/#{orders.order[i].item}')  Visit 
+                        p.card-body
+                            ul.list-group
+                                li.list-group-item 
+                                    |  Price : #{orders.order[i].price}
+                                li.list-group-item 
+                                    | Quantity : #{orders.order[i].quantity}
+                        //a.btn.btn-success(href='/cart/add/#{products[i].id}')  Add to cart 
+    
+
+                -}
+                    -}
            
     -}
     -if(s){
@@ -27,8 +34,11 @@ block content
                     h4.homeTitle #{s.shipping[i].title}
                     p.btn.btn-primary(onclick="getUser(this.id,this)" id="#{s.shipping[i].buyer}")  get customer details
                     p.card-body
-                        |  Price : #{s.shipping[i].price}
-                        | Quantity : #{s.shipping[i].quantity}
+                        ul.list-group
+                            li.list-group-item 
+                                |  Price : #{s.shipping[i].price}
+                            li.list-group-item 
+                                | Quantity : #{s.shipping[i].quantity}
             -}
 
     -}

@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-	background-color: white;
+	background-color: #f4f4f4;
 }
 
 .card {
@@ -52,9 +52,9 @@ nav {
 
 .showSearch {
 	width: 100%;
-	max-width: 350px;
 	margin: 0 auto;
 	padding: 3px;
+	z-index: 100;
 }
 
 .searchList {
@@ -65,5 +65,4 @@ nav {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	vertical-align: center;
-	z-index: 100;
 }

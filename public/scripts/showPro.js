@@ -8,6 +8,7 @@ function updateImage(data){
 function addToCart(id){
   let data={
     id:id,
+    quantity:document.getElementById("quantity").value,
   };
   let change=document.getElementById(`product_${id}`);
   (change.innerHTML="Added !");

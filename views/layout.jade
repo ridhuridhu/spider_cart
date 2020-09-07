@@ -10,31 +10,55 @@ head
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
   block head 
 body 
-  nav#navbar.navbar.navbar-expand-lg
+  nav#navbar.navbar.navbar-expand-md
     a.navbar-brand(href='/') Spider Cart 
     button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
       i.fa.fa-bars(aria-hidden='true')
     #navbarSupportedContent.collapse.navbar-collapse
-      ul.navbar-nav.mr-auto
-        li.nav-item
-          a.nav-link(href='/') Home 
-        li.nav-item
-          a.nav-link(href='#') Link
+      ul.navbar-nav.ml-auto
         -if(user){
+          -if(user.type=="Buyer"){
+            li.nav-item
+              a.nav-link(href='/buyer/orders')
+                i(class="fa fa-clipboard-check")
+                |   Your Orders
+
+            li.nav-item
+              a.nav-link(href='/cart')
+                i(class="fa fa-shopping-cart" aria-hidden="true")
+                |    Cart
+
+
+          -}
+          -else{
+            li.nav-item
+              a.nav-link(href='/seller/add') 
+                i(class="fa fa-plus" aria-hidden="true")
+                |   Add Product 
+            li.nav-item
+              a.nav-link(href='/seller/shipping')
+                i(class="fa fa-truck-moving" aria-hidden="true")
+                |   Track Shipping
+
+          -}
+         
           li.nav-item
-            a.nav-link(href='/cart')
-              i(class="fa fa-shopping-cart" aria-hidden="true")
-              |   Cart
-          li.nav-item
-            a.nav-link(href='/auth/logout') Logout 
+            a.nav-link(href='/auth/logout')
+              i(class="fa fa-sign-out-alt")
+              | Logout 
         -}
         -else{
           li.nav-item
-            a.nav-link(href='/auth/login') Login 
+            a.nav-link(href='/auth/login')
+              i(class="fa fa-sign-in-alt")
+              |  Login 
           li.nav-item
-            a.nav-link(href='/auth/register') Sign Up
+            a.nav-link(href='/auth/register')
+              i(class="fa fa-door-open")
+              |   Sign Up
 
         -}
     

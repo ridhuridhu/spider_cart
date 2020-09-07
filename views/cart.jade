@@ -18,11 +18,6 @@ block content
                             | quantity: 
                             span(id="#{cart.items[i].item}") #{cart.items[i].quantity}
                             p
-                                | quantity : 
-                                button#roundCart.btn.btn-outline-success(href='#' onclick="plus(#{cart.items[i].item})" )
-                                    | +
-                                button.btn.btn-outline-danger(href='#' onclick="quantity(#{cart.items[i].item},'minus')" )
-                                    | −
                                 hr
                                 button.btn.btn-danger(onclick="remove(this)" id="#{cart.items[i].item}")  Remove 
                                 a.btn.btn-primary(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit

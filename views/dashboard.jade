@@ -16,15 +16,13 @@ block content
         span.input-group-text
             i.fa.fa-search
 
-    .showSearch
-    h1.alert-success Welcome #{user.name} 
+    .showSearch 
     -if(buyer){
-        h1 Buyer 
         hr
         h4 Recent Order
         -orders.order.reverse()
         .homePro
-            h4.homeTitle #{orders.order[0].title}
+            h4.homeTitle #{orders.order[1].title}
             a(href="/buyer/orders" class="btn btn-success") See Recent Orders   
         hr
         h4 Home Feed 
