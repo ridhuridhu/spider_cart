@@ -19,13 +19,17 @@ block content
     .showSearch 
     -if(buyer){
         hr
-        h4 Recent Order
+        .tag
+            h4 Recent Order
+            hr.hoverEffect
         -orders.order.reverse()
         .homePro
             h4.homeTitle #{orders.order[0].title}
             a(href="/buyer/orders" class="btn btn-success") See Recent Orders   
         hr
-        h4 Home Feed 
+        .tag
+            h4 Home Feed 
+            hr.hoverEffect
         .homeShow
             -for(let i=0;i<products.length;i++){
                 .homePro
@@ -39,13 +43,13 @@ block content
     -}
     -else{  
         hr
-        h4 Recent Shipping
+        .tag
+            h4 Recent Shipping
+            hr.hoverEffect
         .homePro
             h4.homeTitle #{s.shipping[0].title}
             a(href="/seller/shipping" class="btn btn-success") See Recent shipping   
         hr
-        li 
-            a(href="/seller/add") add Product
         -if(products){
             .products
                 -for(var i=0;i<products.length;i++){

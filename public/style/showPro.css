@@ -1,6 +1,7 @@
 .show {
   margin: 10px auto;
-  padding: 10px;
+  padding: 15px;
+  border: 1px solid silver;
 }
 
 .card-title {
@@ -11,6 +12,9 @@
 .showPro {
   display: flex;
   margin: 5px auto;
+  padding: 10px;
+  border: 1px solid silver;
+  box-shadow: 3px 3px 3px 3px  #d32f2f;
 
 }
 

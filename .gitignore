@@ -41,6 +41,7 @@ build/Release
 node_modules/
 jspm_packages/
 uploads/
+test.html/
 
 # TypeScript v1 declaration files
 typings/

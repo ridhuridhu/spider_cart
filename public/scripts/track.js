@@ -1,6 +1,6 @@
 
 function getUser(id,tagData){
-    console.log(id,tagData);
+    //console.log(id,tagData);
     var tag={
         id:id
     };

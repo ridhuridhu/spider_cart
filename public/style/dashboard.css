@@ -32,6 +32,7 @@
   width: 100%;
   max-width: 260px;
   margin: 10px auto;
+  box-shadow: 2px 2px 2px 2px silver;
 
 }
 
@@ -45,7 +46,9 @@
 .homeProImg {
   width: 100%;
   max-width: 250px;
-  margin: 0 auto;
+  margin:15px auto;
+  border: 1px solid silver;
+
 }
 
 .homeTitle {
@@ -55,6 +58,7 @@
 .homePro a {
   margin: 10px;
 }
+
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {
   .homeShow {

@@ -7,7 +7,9 @@ block head
 block content
     .container
         -if((cart.items.length)){
-            h1 Total : #{cart.total}
+            .tag
+                h1 Total : #{cart.total}
+                hr.hoverEffect
             a(href="/cart/order" class="btn btn-success" ) Order 
             .cart
                 -for(let i=0;i<cart.items.length;i++){
@@ -24,7 +26,9 @@ block content
                 -}
         -}
         -else{
-            h1 Your Cart is Empty
+            .tag
+                h1 Your Cart is Empty
+                hr.hoverEffect
         -}
         br
     script(src="/scripts/cart.js")

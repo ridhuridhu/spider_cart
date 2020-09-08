@@ -32,7 +32,7 @@ nav {
 }
 
 #navbar {
-	background-color: #34495e;
+	background-color: #d32f2f;
 }
 
 .navbar-brand img {
@@ -65,4 +65,14 @@ nav {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	vertical-align: center;
+}
+.hoverEffect{
+	width: 0px;
+}
+
+.tag:hover{
+	border-bottom: 1px solid #d32f2f;
+}
+.tag h4{
+	text-align: center;
 }

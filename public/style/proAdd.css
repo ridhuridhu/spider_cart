@@ -11,4 +11,5 @@
   max-width: 250px;
   margin: 10px auto;
   border: 1px solid silver;
+  box-shadow: 2px 3px 3px 3px #d32f2f;
 }
