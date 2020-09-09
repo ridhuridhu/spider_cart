@@ -21,7 +21,7 @@ block content
                             span(id="#{cart.items[i].item}") #{cart.items[i].quantity}
                             p
                                 hr
-                                button.btn.btn-danger(onclick="remove(this)" id="#{cart.items[i].item}")  Remove 
+                                button.alert.alert-danger(onclick="remove(this)" id="#{cart.items[i].item}")  Remove 
                                 a.btn.btn-primary(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit
                 -}
         -}

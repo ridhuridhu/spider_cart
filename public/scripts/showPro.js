@@ -1,5 +1,5 @@
 function updateImage(data){
-    let mainImg=document.getElementById("mainImg");
+    let mainImg=document.getElementById("main-img");
     mainImg.src=data.src;
   }
   

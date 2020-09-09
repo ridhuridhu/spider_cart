@@ -1,6 +1,10 @@
+/* dark #273377
+mild #3949ab
+light #606dbb  */
+
 body {
 	background-color: #f4f4f4;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -32,7 +36,7 @@ nav {
 }
 
 #navbar {
-	background-color: #d32f2f;
+	background-color: #273377;
 }
 
 .navbar-brand img {
@@ -66,13 +70,29 @@ nav {
 	text-overflow: ellipsis;
 	vertical-align: center;
 }
-.hoverEffect{
+
+.hoverEffect {
 	width: 0px;
 }
 
-.tag:hover{
-	border-bottom: 1px solid #d32f2f;
+.btn {
+	margin: 5px auto;
+	border: 1px solid #273377;
 }
-.tag h4{
-	text-align: center;
+
+.btn:hover {
+	background-color: #3949ab;
+	color: #000;
+	border: 1px solid #000;
+
 }
+
+.form-control:focus {
+	border-color: #606dbb;
+	box-shadow: 0 1px 1px #606dbb inset, 0 0 8px #606dbb;
+	outline: 0 none;
+}
+
+hr {
+    border-bottom: 1px solid #3949ab;
+  }

@@ -1,52 +1,78 @@
-.show {
-  margin: 10px auto;
-  padding: 15px;
-  border: 1px solid silver;
+
+hr {
+  border-bottom: 1px solid #3949ab;
 }
 
-.card-title {
-  text-align: center;
-
+.form-control:focus {
+  border-color: #606dbb;
+  box-shadow: 0 1px 1px #606dbb inset, 0 0 8px #606dbb;
+  outline: 0 none;
 }
 
-.showPro {
+.product {
   display: flex;
-  margin: 5px auto;
+  flex: 1;
+  background-color: #f4f4f4;
   padding: 10px;
-  border: 1px solid silver;
-  box-shadow: 3px 3px 3px 3px  #d32f2f;
+  margin: 10px auto;
 
 }
 
-#mainImg {
+.img-section {
   width: 100%;
-  max-width: 350px;
+  max-width: 600px;
+  
+
+
 }
 
-.imgList {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.imgList img {
-
-  width: 100%;
-  max-width: 150px;
+.btn {
   margin: 5px auto;
+  border: 1px solid #273377;
+}
+
+.btn:hover {
+  background-color: #3949ab;
+  color: #000;
+  border: 1px solid #000;
+
+}
+
+#main-img {
+ width: 350px;
+  margin: 10px;
+  padding: 10px auto;
+  border: 1px solid #273377;
+}
+
+.img-selector img {
+  width: 100%;
+  max-width: 100px;
+  margin: 10px auto;
+  border: 1px solid silver;
   cursor: pointer;
 
 
 }
 
+.img-selector :hover {
+  transform: scale(1.5);
+  box-shadow: 2px 2px 3px 3px #606dbb;
+}
+
+.details-section {
+  padding: 15px;
+  font-family: 'Lato', sans-serif;
+}
+
 @media only screen and (min-width: 200px) and (max-width: 767px) {
-  .showPro {
+  .product {
     flex-direction: column;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .showPro {
+  .product {
     flex-direction: row;
 
   }
