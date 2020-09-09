@@ -16,7 +16,7 @@
 <body>
 
   <br>
-  <div class="container">
+  <!-- <div class="container">
     <div class="product">
         <img src="./uploads/avatar-1599410498682.jpg" alt="">  
       <div class="details">
@@ -34,10 +34,36 @@
       </div>
       <img src="./uploads/avatar-1599410512042.jpg" alt="">
     </div>     
+  </div> -->
+
+  <div class="container">
+    <div class="product-card">
+      <h4> Lorem, ipsum dolor. </h4>
+      <hr>
+      <div class="product-para">
+        <ul>
+          <ol class="text-muted" >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum esse optio alias, praesentium eaque recusandae!
+          </ol>
+          <ol>
+              Price :  ₹ 599         
+          </ol>
+          <ol>
+              Quantity:5
+          </ol>
+        </ul>
+        <a href="" class="btn" > Visit </a>
+      </div>
+    </div>
+
+
+
   </div>
 
 
-
+  <br>
+  <br>
+  <br>
 
 </body>
 
@@ -46,7 +72,41 @@
 <!-- dark #273377
 mild #3949ab
 light #606dbb -->
+
 <style>
+  .product-box{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border: 1px groove#3949ab;
+    box-shadow: 5px 0px 5px 2px #606dbb;
+    margin: 10px auto;
+  }
+  .product-img{
+    width: 100%;
+    max-width: 250px;
+
+  }
+  .product-para{
+    margin: auto;
+  }
+  body{
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .btn-danger :hover{
+    color: #000;
+    background-color: #a12a2a;
+  }
+  .product-card{
+    border: 1px solid #3949ab;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px silver;
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+  }
   
   .product{
     border: 1px solid #3949ab;

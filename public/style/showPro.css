@@ -2,7 +2,9 @@
 hr {
   border-bottom: 1px solid #3949ab;
 }
-
+body{
+  font-family: 'Lato', sans-serif;
+}
 .form-control:focus {
   border-color: #606dbb;
   box-shadow: 0 1px 1px #606dbb inset, 0 0 8px #606dbb;

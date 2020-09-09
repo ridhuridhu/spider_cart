@@ -2,13 +2,14 @@ extends layout
 
 block head
     title Spider Cart | Edit Product 
+    link(rel="stylesheet", href="/style/dashboard.css")
    
 block content
     form(action='#',id="imageUploadForm" ,method='post', enctype='multipart/form-data')
         .form-group
             label(for="image") choose images and add them 
             input.form-control(type='file', id="fileInput", placeholder="Add images of the Product" name='avatar')
-        input.btn.btn-success(type="submit", value="Add image")
+        input.btn(type="submit", value="Add image")
     br
     form(action="/seller/edit/#{product.id}", id="addProduct" method="post")
         .form-group
@@ -25,8 +26,8 @@ block content
             input(type="text", name="" value="#{product.caption}" id="hideMe")
             textarea.form-control(type="text", rows="3" name="cap" id="p_cap" value="#{product.caption} ")
         .images
-        input.btn.btn-outline-success(type="submit", value="Update Product")
-
+        input.btn(type="submit", value="Update Product")
+        p click on the images to delete them !
     -for(var i=0;i<product.images.length;i++){
         img(src="#{product.images[i]}",class="proAdd", onclick="(delImg(this))" alt="")
     -}

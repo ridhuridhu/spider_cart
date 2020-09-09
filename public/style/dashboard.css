@@ -1,8 +1,51 @@
+body{
+  font-family: 'Lato', sans-serif;
+}
 .products {
   display: flex;
   flex-wrap: wrap;
 }
+.product-box{
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  border: 1px groove#3949ab;
+  box-shadow: 5px 0px 5px 2px #606dbb;
+  margin: 10px auto;
 
+}
+.product-img{
+  width: 100%;
+  max-width: 250px;
+
+}
+.product-para{
+  margin: auto;
+}
+.product-card{
+  border: 1px solid #3949ab;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px silver;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+}
+.btn {
+	margin: 5px 10px;
+	border: 1px solid #273377;
+}
+.btn:hover {
+	background-color: #3949ab;
+	color: #000;
+	border: 1px solid #000;
+
+}
+.form-control:focus {
+  border-color: #606dbb;
+  box-shadow: 0 1px 1px #606dbb inset, 0 0 8px #606dbb;
+  outline: 0 none;
+}
 .showProImg {
   width: 100%;
   min-width: 150px;

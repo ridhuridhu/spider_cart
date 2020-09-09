@@ -5,30 +5,39 @@ block head
     link(rel="stylesheet", href="/style/cart.css")
 
 block content
-    .container
-        -if((cart.items.length)){
-            .tag
-                h1 Total : #{cart.total}
-                hr.hoverEffect
-            a(href="/cart/order" class="btn btn-success" ) Order 
-            .cart
+
+        .container
+            
+            -if((cart.items.length)){
+                h4  Total : ₹ #{cart.total}  
+                a(href="/cart/order" class="btn " ) Order 
+                br
+                br
                 -for(let i=0;i<cart.items.length;i++){
-                    .cartPro(class="#{cart.items[i]._id}")
-                        h4.card-title  #{cart.items[i].title} 
-                        p.card-body
-                            | price :  #{cart.items[i].price}
-                            | quantity: 
-                            span(id="#{cart.items[i].item}") #{cart.items[i].quantity}
-                            p
-                                hr
-                                button.alert.alert-danger(onclick="remove(this)" id="#{cart.items[i].item}")  Remove 
-                                a.btn.btn-primary(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit
+
+                    .product-card(class="#{cart.items[i]._id}")
+                        h3 Lorem, ipsum dolor.
+                        hr
+                        ul
+                        ol
+                            h5  Price : ₹ #{cart.items[i].price} 
+                        ol
+                            h5  quantity: 
+                                span(id="#{cart.items[i].item}") #{cart.items[i].quantity}
+                        a.btn-danger.btn(onclick="remove(this)" id="#{cart.items[i].item}")  Remove  
+                        a.btn-primary.btn(href="/cart/show/#{cart.items[i].item}" target="_blank") Visit
+                    br
+                
+                
                 -}
-        -}
-        -else{
-            .tag
-                h1 Your Cart is Empty
-                hr.hoverEffect
-        -}
-        br
+            -}
+            -else{
+                .tag.container
+                    h1 Your Cart is Empty :)
+                    hr
+            -}
+            br
+
+          
+
     script(src="/scripts/cart.js")

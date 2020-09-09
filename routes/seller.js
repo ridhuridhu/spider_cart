@@ -22,7 +22,7 @@ router.get("/", ensureSeller,ensureAuthenticated,(req, res) => {
     
 });
 
-router.get("/shipping",(req,res)=>{
+router.get("/shipping",ensureAuthenticated,ensureSeller,(req,res)=>{
     let user=req.user;
     Shipping.findOne({seller:user._id},(err,s)=>{
         if(err) throw err;
@@ -44,7 +44,7 @@ router.get('/add',ensureSeller,ensureAuthenticated, (req, res) => {
     res.render("proAdd");
 });
 
-router.post("/add", async(req, res) => {
+router.post("/add",ensureAuthenticated, async(req, res) => {
     let newPro = new Product();
     newPro.title = req.body.title;
     newPro.caption = req.body.cap;

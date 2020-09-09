@@ -4,7 +4,7 @@ const Order=require("../models/Order");
 const {ensureGuest,ensureAuthenticated,ensureSeller,ensureBuyer} = require('../libs/auth');
 const User = require('../models/User');
 
-router.get("/",(req,res)=>{
+router.get("/",ensureAuthenticated,ensureBuyer,(req,res)=>{
     Products.find({},(err,products)=>{
         Order.findOne({buyer:req.user._id},(err,orders)=>{
             if(err) throw err;
@@ -14,7 +14,7 @@ router.get("/",(req,res)=>{
    
 });
 
-router.get("/orders",(req,res)=>{
+router.get("/orders",ensureAuthenticated,ensureBuyer,(req,res)=>{
     let user=req.user;
     Order.findOne({buyer:user._id},(err,o)=>{
         if(err) throw err;

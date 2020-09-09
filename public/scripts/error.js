@@ -22,10 +22,12 @@ passwordBox.addEventListener("keyup",()=>{
         passValid.style.display="none";
     }
     if(valid){
-        submitBtn.classList.remove("disabled");
-        submitBtn.style.cursor="pointer";
+        //submitBtn.classList.remove("disabled");
+        $("#submitBtn").show();
+        //submitBtn.style.cursor="pointer";
     }else{
-        submitBtn.classList.add("disabled");
-        submitBtn.style.cursor="none";
+        //submitBtn.classList.add("disabled");
+        $("#submitBtn").hide();
+        //submitBtn.style.cursor="none";
     }
 });

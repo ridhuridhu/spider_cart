@@ -18,52 +18,80 @@ block content
 
     .showSearch 
     -if(buyer){
-        hr
-        .tag
-            h4 Recent Order
-            hr.hoverEffect
         -orders.order.reverse()
-        .homePro
-            h4.homeTitle #{orders.order[0].title}
-            a(href="/buyer/orders" class="btn btn-success") See Recent Orders   
-        hr
-        .tag
-            h4 Home Feed 
-            hr.hoverEffect
-        .homeShow
+        .container
+            h1 Recent Order
+            br
+            .product-box
+                .product-para
+                h4 #{orders.order[0].title}
+                hr
+                a.btn(href="/buyer/orders") Check Recent Order
+            br
+            .container
+            h1 Home Feed
+            br
             -for(let i=0;i<products.length;i++){
-                .homePro
-                    h4.homeTitle #{products[i].title}
-                    img.homeProImg(src='#{products[i].images[0]}', alt='img')
-                    a.btn.btn-primary(href='/show/#{products[i].id}')  Visit 
-                    //a.btn.btn-success(href='/cart/add/#{products[i].id}')  Add to cart 
+                -if(i%2){
+                    .product-box
+                        img.product-img(src='#{products[i].images[0]}', alt='img')
+                        .product-para
+                            h4 #{products[i].title}
+                            hr
+                            a.btn(href='/show/#{products[i]._id}') Check Product
+
+                -}
+                -else{
+                    .product-box
+                        .product-para
+                            h4 #{products[i].title}
+                            hr
+                            a.btn(href='/show/#{products[i]._id}') Check Product
+                        img.product-img(src='#{products[i].images[0]}', alt='img')
+
+
+                -}
+                br
+           
             -}
            
 
     -}
     -else{  
-        hr
-        .tag
-            h4 Recent Shipping
-            hr.hoverEffect
-        .homePro
-            h4.homeTitle #{s.shipping[0].title}
-            a(href="/seller/shipping" class="btn btn-success") See Recent shipping   
-        hr
+        h1 Recent Shipping
+        br
+        .container
+            .product-box
+                .product-para
+                    h4 #{s.shipping[0].title}
+                    hr
+                    a(href="/seller/shipping" class="btn") See Recent shipping
+        br
         -if(products){
-            .products
+            .container
                 -for(var i=0;i<products.length;i++){
-                    .showPro
-                        h4.card-title #{products[i].title}
-                        img.showProImg(src='#{products[i].images[0]}',style="margin:0 auto;" ,alt='img',class="img-responsive center-block")
-                        p.card-body 
-                            h4 Price : 
-                                button.btn.btn-outline-success #{products[i].price}
-                            | #{products[i].caption}
-                        .card-bottom
-                            a.btn.btn-outline-primary(href='/show/#{products[i].id}')  Visit
-                            | &nbsp;
-                            a.btn.btn-outline-primary(href='/seller/edit/#{products[i].id}') Edit      
+                    -if(i%2){
+                    .product-box
+                        img.product-img(src='#{products[i].images[0]}', alt='img')
+                        .product-para
+                            h4 #{products[i].title}
+                            hr
+                            p #{products[i].caption}
+                            a.btn(href='/show/#{products[i].id}')  Visit
+                            a.btn(href='/seller/edit/#{products[i].id}') Edit 
+
+                    -}
+                    -else{
+                        .product-box
+                            .product-para
+                                h4 #{products[i].title}
+                                hr
+                                p #{products[i].caption}
+                                a.btn(href='/show/#{products[i].id}')  Visit
+                                a.btn(href='/seller/edit/#{products[i].id}') Edit 
+                            img.product-img(src='#{products[i].images[0]}', alt='img')
+                    -}
+                    br
                 -}
         -}
     -}

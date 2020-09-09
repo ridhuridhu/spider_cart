@@ -38,12 +38,12 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 //image upload
-router.post('/profile', upload.single('avatar'), function (req, res, next) {
+router.post('/profile', ensureAuthenticated,upload.single('avatar'), function (req, res, next) {
     res.send(req.file);
 });
 
 //search
-router.post("/search/:q", async (req, res) => {
+router.post("/search/:q",ensureAuthenticated, async (req, res) => {
     let q = req.params.q;
     ////console.log(q);
     let div = "<ul> ";
@@ -69,7 +69,7 @@ router.post("/search/:q", async (req, res) => {
     div += "</ul>";
     res.send(div);
 });
-router.get("/show/:id", (req, res) => {
+router.get("/show/:id",ensureAuthenticated, (req, res) => {
     Product.findOne({
         id: req.params.id
     }, (err, product) => {
@@ -80,7 +80,7 @@ router.get("/show/:id", (req, res) => {
         }));
     });
 });
-router.get("/cart", async (req, res) => {
+router.get("/cart",ensureAuthenticated, async (req, res) => {
     await Cart.findOne({
         user: req.user._id
     }, (err, cart) => {
@@ -94,7 +94,7 @@ router.get("/cart", async (req, res) => {
 
 });
 
-router.get("/cart/show/:id", (req, res) => {
+router.get("/cart/show/:id",ensureAuthenticated, (req, res) => {
     Product.findById(req.params.id, (err, product) => {
         if (err) throw err;
         res.render("showPro", ({
@@ -104,7 +104,7 @@ router.get("/cart/show/:id", (req, res) => {
 
     });
 });
-router.post("/cart/add/:id", async (req, res) => {
+router.post("/cart/add/:id",ensureAuthenticated, async (req, res) => {
     let id = req.params.id;
     let quantity=req.body.quantity;
     //console.log(quantity);
@@ -167,7 +167,7 @@ router.post("/cart/add/:id", async (req, res) => {
     res.send("added");
 });
 
-router.post("/cart/remove/", (req, res) => {
+router.post("/cart/remove/",ensureAuthenticated, (req, res) => {
     let id = req.body.id;
     //console.log(id);
     Cart.findOne({
@@ -196,7 +196,7 @@ router.post("/cart/remove/", (req, res) => {
 
 });
 
-router.get("/cart/order",async(req,res)=>{
+router.get("/cart/order",ensureAuthenticated,async(req,res)=>{
     let user=req.user;
   await Cart.findOne({user:user._id},async(err,cart)=>{
         if(err) throw err;

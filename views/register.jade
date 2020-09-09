@@ -1,6 +1,7 @@
 extends layout
 block head 
     title Spider Cart | SignUp
+    link(rel="stylesheet", href="/style/dashboard.css")
 
 block content
     .container.mt-5
@@ -39,7 +40,7 @@ block content
                     label(for='email') Confirm Password
                     input.form-control(type='password', name='rpassword', value="test@gmail.com", required='')
                 hr
-                button.btn.btn-primary.disabled(type='submit',id="submitBtn") Sign Up
+                button.btn.disabled(type='submit',id="submitBtn") Sign Up
         p
             | Have an account? 
             a(href='/auth/login')   Login 

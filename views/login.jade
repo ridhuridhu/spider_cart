@@ -1,6 +1,7 @@
 extends layout
 block head 
     title Spider Cart | Login
+    link(rel="stylesheet", href="/style/dashboard.css")
 block content
     if(message.length>0)
         .container.mt-5
@@ -21,7 +22,7 @@ block content
                     input.form-control(type='password', name='password',id="password", required='true', value="Btest",)
                     p.alert.alert-danger(id="passValid")
                     hr
-                    button.btn.btn-primary.disabled(type='submit', id="submitBtn") Log In
+                    button.btn.disabled(type='submit', id="submitBtn") Log In
                 p
                     | Don't have an account?
                     a(href='/auth/register')   Sign up

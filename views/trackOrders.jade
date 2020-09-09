@@ -8,39 +8,38 @@ block content
     .container
     -if(orders){
         -orders.order.reverse()
-        .homeShow
+        .container
             -for(let i=0;i<orders.order.length;i++){
                 -if(orders.order[i]){
-                    .homePro
-                        h4.homeTitle #{orders.order[i].title}
-                        a.btn.btn-primary(href='/cart/show/#{orders.order[i].item}')  Visit 
-                        p.text-muted #{orders.order[i].date}
-                        p.card-body
-                            ul.list-group
-                                li.list-group-item 
-                                    |  Price : #{orders.order[i].price}
-                                li.list-group-item 
-                                    | Quantity : #{orders.order[i].quantity}
-                        //a.btn.btn-success(href='/cart/add/#{products[i].id}')  Add to cart 
-    
-
+                    .product-card
+                        h4 #{orders.order[i].title}
+                        hr
+                        .product-para
+                            ul
+                                ol.text-muted #{orders.order[i].date}
+                                ol Price : ₹ #{orders.order[i].price}
+                                ol Quantity : #{orders.order[i].quantity}
+                        a.btn(href='/cart/show/#{orders.order[i].item}')  Visit 
+                    br
                 -}
-                    -}
+            -}
            
     -}
     -if(s){
-        .homeShow
+        .container
             -for(let i=0;i<s.shipping.length;i++){
-                .homePro
-                    h4.homeTitle #{s.shipping[i].title}
-                    p.btn.btn-primary(onclick="getUser(this.id,this)" id="#{s.shipping[i].buyer}")  get customer details
-                    p.text-muted  #{s.shipping[i].date}
-                    p.card-body
-                        ul.list-group
-                            li.list-group-item 
-                                |  Price : #{s.shipping[i].price}
-                            li.list-group-item 
-                                | Quantity : #{s.shipping[i].quantity}
+                .product-box
+                    h4 #{s.shipping[i].title}
+                    hr
+                    .product-para
+                        p.btn(onclick="getUser(this.id,this)" id="#{s.shipping[i].buyer}")  get customer details
+                        p.text-muted  #{s.shipping[i].date}
+                        p
+                            ul.list-group
+                                li.list-group-item 
+                                    |  Price : ₹ #{s.shipping[i].price}
+                                li.list-group-item 
+                                    | Quantity : #{s.shipping[i].quantity}
             -}
 
     -}
