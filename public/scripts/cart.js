@@ -1,5 +1,5 @@
 
-
+console.log("object");
 function remove(tag){
     let baseUrl=`${window.location.origin}/cart`;
     let data={

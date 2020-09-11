@@ -38,7 +38,7 @@ block content
                         .product-para
                             h4 #{products[i].title}
                             hr
-                            a.btn(href='/show/#{products[i]._id}') Check Product
+                            a.btn(href='/show/#{products[i].id}') Check Product
 
                 -}
                 -else{
@@ -46,7 +46,7 @@ block content
                         .product-para
                             h4 #{products[i].title}
                             hr
-                            a.btn(href='/show/#{products[i]._id}') Check Product
+                            a.btn(href='/show/#{products[i].id}') Check Product
                         img.product-img(src='#{products[i].images[0]}', alt='img')
 
 

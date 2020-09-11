@@ -26,6 +26,8 @@ router.get("/shipping",ensureAuthenticated,ensureSeller,(req,res)=>{
     let user=req.user;
     Shipping.findOne({seller:user._id},(err,s)=>{
         if(err) throw err;
+        var i=s.shipping[s.shipping.length-1];
+        console.log((i.date));
         res.render("trackOrders",{s:s});
     });
 });

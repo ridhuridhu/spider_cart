@@ -124,9 +124,9 @@ router.post("/cart/add/:id",ensureAuthenticated, async (req, res) => {
                     title: product.title,
                     price: product.price,
                     quantity: quantity,
-                    data: (moment().format("LLLL"))
+                    data: new Date()
                 });
-                newCart.total = (product.price);
+                newCart.total = parseInt(product.price);
                 await newCart.save((err) => {
                     if (err) throw err;
                     //res.send("new cart added");
@@ -136,8 +136,8 @@ router.post("/cart/add/:id",ensureAuthenticated, async (req, res) => {
                 ////console.log(cart.id);
                 for (let i = 0; i < cart.items.length; i++) {
                     if (JSON.stringify(cart.items[i].item) == JSON.stringify(product._id)) {
-                        cart.items[i].quantity+=quantity;
-                        cart.total += product.price;
+                        (cart.items[i].quantity)+=parseInt(quantity);
+                        (cart.total) += parseInt(product.price);
                         await cart.save((err) => {
                             if (err) throw err;
                             //res.send("quantity updated");
@@ -152,9 +152,9 @@ router.post("/cart/add/:id",ensureAuthenticated, async (req, res) => {
                         title: product.title,
                         price: product.price,
                         quantity: 1,
-                        data: (moment().format("LLLL"))
+                        data: new Date()
                     });
-                    cart.total += product.price;
+                    (cart.total) += parseInt(product.price);
                     await cart.save((err) => {
                         if (err) throw err;
                         // res.send("new item added to cart");
@@ -178,7 +178,7 @@ router.post("/cart/remove/",ensureAuthenticated, (req, res) => {
             //console.log(cart.items[i].item===id);
             if (JSON.stringify(cart.items[i].item) == JSON.stringify(id)) {
                 ////console.log("object");
-                cart.total -=( cart.items[i].price)*cart.items[i].quantity;
+                cart.total -=parseInt(( cart.items[i].price)*cart.items[i].quantity);
                 cart.items.splice(i, 1);
                 cart.save(err => {
                     if (err) throw err;
@@ -211,8 +211,8 @@ router.get("/cart/order",ensureAuthenticated,async(req,res)=>{
                 var seller=pro.seller;
                 var title=cart.items[i].title;
                 var price=cart.items[i].price;
-                var quantity=cart.items[i].quantity;
-                var date=JSON.stringify(moment().format("LLLL"));
+                var quantity=parseInt(cart.items[i].quantity);
+                var date=new Date();
                 console.log(date)
                 pro.quantity--;
                 var x={

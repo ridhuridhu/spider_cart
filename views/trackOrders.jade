@@ -27,6 +27,7 @@ block content
     -}
     -if(s){
         .container
+            -s.shipping.reverse();
             -for(let i=0;i<s.shipping.length;i++){
                 .product-box
                     h4 #{s.shipping[i].title}

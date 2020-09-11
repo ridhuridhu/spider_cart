@@ -27,7 +27,7 @@ block content
             textarea.form-control(type="text", rows="3" name="cap" id="p_cap" value="#{product.caption} ")
         .images
         input.btn(type="submit", value="Update Product")
-        p click on the images to delete them !
+        p.alert.alert-danger click on the images to delete them !
     -for(var i=0;i<product.images.length;i++){
         img(src="#{product.images[i]}",class="proAdd", onclick="(delImg(this))" alt="")
     -}

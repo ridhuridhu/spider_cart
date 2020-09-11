@@ -4,6 +4,7 @@ $("#addToCart").click(function (e) {
     console.log(this);
 });
 
+
 var baseUrl=`${window.location.origin}/`;
 // console.log(baseUrl);
 $(".showSearch").hide();
