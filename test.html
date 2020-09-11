@@ -17,122 +17,72 @@
 
   <br><br>
 
-  <div class="container">
-
-
-
-  </div>
-
+  <canvas id="myChart"></canvas>
 
   <br>
   <br>
   <br>
 
 </body>
+
 </html>
-<script>
-  var date=new Date();
-  console.log(date.getDate());
-  console.log(date.getMonth());
-
-
-</script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+  integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+  crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
 <!-- dark #273377
 mild #3949ab
 light #606dbb -->
-
 <style>
-  .product-box{
-    display: flex;
-    flex-direction: row;
-    padding: 15px;
-    border: 1px groove#3949ab;
-    box-shadow: 5px 0px 5px 2px #606dbb;
-    margin: 10px auto;
-  }
-  .product-img{
+  #myChart{
+    background-color: #f5f5f5;
+    border: 1px solid #606dbb;
     width: 100%;
-    max-width: 250px;
-
-  }
-  .product-para{
-    margin: auto;
-  }
-  body{
-    font-family: 'Lato', sans-serif;
-  }
-  
-  .btn-danger :hover{
-    color: #000;
-    background-color: #a12a2a;
-  }
-  .product-card{
-    border: 1px solid #3949ab;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px 2px silver;
-    width: 100%;
-    max-width: 550px;
+    max-width: 500px;
     margin: 0 auto;
-  }
-  
-  .product{
-    border: 1px solid #3949ab;
-    padding: 15px;
-    margin: 10px auto;
-    display: flex;
-    width: 100%;
-    min-width: 150px;
-    max-width: 550px;
-
-  }
-  .product hr{
-    width: 0px;
-  }
-  .product :hover hr{
-    margin-left: 5%;
-    width: 90%;
-    border-top: 2px solid #273377;
-    transition: width 0.5s ease, margin-left 0.5s ease;
-  }
-  .product img{
-    width: 100%;
-    max-width: 150px;
-    flex: 1;
-  }
-  .product .details{
-    flex: 3;
+    box-shadow: 2px 2px 2px 2px #606dbb;
   }
 </style>
 
-<style>
-  hr {
-    border-bottom: 1px solid #3949ab;
-  }
+<script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["Day:1", "Day:2", "Day:3", "Day:4", "Day:5", "Day:6","Day:7"],
+      datasets: [{
+        label: '# of Products selled ',
+        data: [105, 124, 78, 91, 62, 56,20],
+        backgroundColor: ['rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgb(255,128,171,0.4)'
+        ],
 
-  .form-control:focus {
-    border-color: #606dbb;
-    box-shadow: 0 1px 1px #606dbb inset, 0 0 8px #606dbb;
-    outline: 0 none;
-  }
-
-  
-  .btn {
-    margin: 5px auto;
-    border: 1px solid #273377;
-  }
-
-  .btn:hover {
-    background-color: #3949ab;
-    color: #000;
-    border: 1px solid #000;
-    
-
-  }
-
-</style>
-
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,128,171,1),'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>

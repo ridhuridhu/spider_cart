@@ -1,0 +1,38 @@
+extends layout 
+
+block head 
+    title Spider Cart | Insights
+
+block content
+
+    h2  Insights
+    br
+    p Products sold for the last 7 days 
+    br
+
+    canvas(id="myChart")
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', integrity='sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==', crossorigin='anonymous')
+    p.hideHere
+        -for(var i=0;i<7;i++){
+            input(type="text", name="",id=`${i}`,value="#{date[i]}")
+
+        -}
+    
+    style.
+        body{
+            font-family: 'Lato', sans-serif;
+        }
+
+        .hideHere{
+            display:none;
+        }
+        #myChart{
+        background-color: #f5f5f5;
+        border: 1px solid #606dbb;
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto;
+        box-shadow: 2px 2px 2px 2px #606dbb;}
+    script(src="/scripts/insights.js")
+
+

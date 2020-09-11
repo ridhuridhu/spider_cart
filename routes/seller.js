@@ -80,6 +80,32 @@ router.get("/edit/:id", ensureSeller,(req, res) => {
     });
 
 });
+router.get("/insights",ensureSeller,async(req,res)=>{
+    let user=req.user;
+    let date=[0,0,0,0,0,0,0];
+   await Shipping.findOne({seller:user._id},(err,s)=>{
+        if(err) throw err;
+        for(var a=0;a<s.shipping.length;a++){
+            var i=s.shipping[a];
+            var currentDate=new Date();
+            var k=new Date(currentDate); 
+            var j=new Date(i.date);
+            var d=(k.getDate()-j.getDate());
+            if(d>0 && d<=7){
+                
+                    date[d]+=s.shipping[a].quantity;
+                
+            }
+        
+        }
+        //console.log(d);
+        // console.log(j.getDate(),k.getDate());
+        // //console.log(new Date(i.date).getDay());
+        // console.log(date)
+        res.render("insights",{date:date});
+    });
+
+});
 router.post("/edit/:id",ensureSeller,(req,res)=>{
     ////console.log(req.params);
     let id = req.params.id;
