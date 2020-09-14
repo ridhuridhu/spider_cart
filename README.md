@@ -1,6 +1,5 @@
 # spider_cart
 <hr>
-<h1> A spider cart website where users can purchase and add items to their cart while sellers can sell things online and update items in their inventory.</h1>
 <h1> Prerequisite </h1>
 
 * install NodeJS
