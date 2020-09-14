@@ -24,9 +24,10 @@ block content
             br
             .product-box
                 .product-para
-                h4 #{orders.order[0].title}
-                hr
-                a.btn(href="/buyer/orders") Check Recent Order
+                    if(orders.order[1].title)
+                        h4 #{orders.order[1].title}
+                        hr
+                        a.btn(href="/buyer/orders") Check Recent Order
             br
             .container
             h1 Home Feed
