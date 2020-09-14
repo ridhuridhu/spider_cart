@@ -4,6 +4,7 @@
 
 * install NodeJS
 * install MongoDB
+* Run MongoDB
 
 
 <h1 align="center">🔨 Common setup 🔨 </h1>
