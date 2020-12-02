@@ -8,12 +8,19 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('connect-flash');
+require('dotenv').config();
 // my vars
 const port = process.env.PORT || 3000;
-const {MONGO_URL} = require('./config/');
+const {
+  MONGO_URL
+} = require('./config/');
+
+// console.log(MONGO_URL);
 require('./libs/db-connection');
 // configuration
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 app.use(session({
   secret: 'abc123',
@@ -39,7 +46,7 @@ app.use((req, res, next) => {
 });
 // static files
 app.use(express.static(path.join(__dirname, '/public')));
-app.use("/image/",express.static("./uploads"));
+app.use("/image/", express.static("./uploads"));
 
 // engine
 app.set('view engine', 'jade');
@@ -48,12 +55,12 @@ require('./config/passport')(passport);
 
 // routes
 
-const buyerRoute=require("./routes/buyer");
-const sellerRoute=require("./routes/seller");
+const buyerRoute = require("./routes/buyer");
+const sellerRoute = require("./routes/seller");
 
 app.use(require('./routes/')); // main routes
 app.use('/auth', require('./routes/auth')); // user routes
-app.use("/buyer",buyerRoute);
-app.use("/seller",sellerRoute);
+app.use("/buyer", buyerRoute);
+app.use("/seller", sellerRoute);
 // run server
 server.listen(port, () => console.info(`Server on Fire @${port}`));

@@ -27,6 +27,16 @@ const upload = multer({
     storage: storage
 });
 
+// cloudinary
+const cloudinary=require('cloudinary').v2;
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.API_KEY,
+    api_secret:process.env.API_SECRET
+});
+
+
+console.log(process.env.CLOUD_NAME);
 router.get('/', ensureAuthenticated, (req, res) => {
     let user = req.user;
     if (user.type == "Buyer") {
@@ -38,9 +48,12 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 //image upload
-router.post('/profile', ensureAuthenticated,upload.single('avatar'), function (req, res, next) {
-    res.send(req.file);
-});
+// router.post('/profile', ensureAuthenticated,upload.single('avatar'), function (req, res, next) {
+//     const file=req.file;
+//     console.log(file);
+//     cloudinary.uploader.upload(fi)
+
+// });
 
 //search
 router.post("/search/:q",ensureAuthenticated, async (req, res) => {
