@@ -20,16 +20,16 @@ block content
     -if(buyer){
         -orders.order.reverse()
         .container
-            h1 Recent Order
-            br
-            .product-box
-                .product-para
-                    if(orders.order[2].title)
+            //- h1 Recent Order
+            //- br
+            //- .product-box
+            //-     .product-para
+            //-         if(orders.order[2].title)
                        
-                        h4 #{orders.order[2].title}
-                        hr
-                        a.btn(href="/buyer/orders") Check Recent Order
-            br
+            //-             h4 #{orders.order[2].title}
+            //-             hr
+            //-             a.btn(href="/buyer/orders") Check Recent Order
+            //- br
             .container
             h1 Home Feed
             br
@@ -60,15 +60,15 @@ block content
 
     -}
     -else{  
-        h1 Recent Shipping
-        br
-        .container
-            .product-box
-                .product-para
-                    h4 #{s.shipping[0].title}
-                    hr
-                    a(href="/seller/shipping" class="btn") See Recent shipping
-        br
+        //- h1 Recent Shipping
+        //- br
+        //- .container
+        //-     .product-box
+        //-         .product-para
+        //-             h4 #{s.shipping[0].title}
+        //-             hr
+        //-             a(href="/seller/shipping" class="btn") See Recent shipping
+        //- br
         -if(products){
             .container
                 -for(var i=0;i<products.length;i++){
